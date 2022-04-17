@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'quiz.js') }}"></script>
+
+<script>
+    let question = {{question|tojson}}
+    console.log(quiz) //this is what is printing out when refresh page
+</script>
+
+<body>
+    <div>QUIZ PLACEHOLDER</div>
+    <br>
+    <button id="next-button-quiz" class="btn btn-warning">Next</button>
+</body>
+{% endblock %}

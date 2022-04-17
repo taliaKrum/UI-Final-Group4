@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'homepage.js') }}"></script>
+
+<body>
+    <div class="spacing row">
+        <div class="col-5">
+            <img class="medium-img" src="https://natashaskitchen.com/wp-content/uploads/2020/05/Vanilla-Cupcakes-2-728x485.jpg">
+        </div>
+        <div class="col-3">
+            <h2><i>Learn how to bake <span class="accent"><b>vanilla cupcakes</b></span> in just 3 steps</i></h2>
+        </div>
+    </div>
+    <br>
+    <button id="start-button" class="btn btn-warning">Start</button>
+</body>
+
+{% endblock %}

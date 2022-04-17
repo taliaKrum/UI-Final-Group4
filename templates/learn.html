@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'learn.js') }}"></script>
+
+<script>
+    let lesson = {{lesson|tojson}}
+    console.log(lesson) //this is what is printing out when refresh page
+</script>
+
+<body>
+    {{lesson.title}} 
+    <br>
+    {{lesson.lesson_id}}
+    <button id="next-button" class="btn btn-warning">Next</button>
+</body>
+{% endblock %}
