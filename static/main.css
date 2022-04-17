@@ -1,0 +1,22 @@
+.medium-img {
+    width: 400px;
+    height: 266px;
+}
+
+.body {
+    background-color: antiquewhite;
+}
+
+.navcolor {
+    /* background-color: #ffc107!important; */
+    background-color: rgb(217, 185, 138)!important;
+}
+
+.accent {
+    color: rgb(217, 185, 138)
+}
+
+.spacing {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
