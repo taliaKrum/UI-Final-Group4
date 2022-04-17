@@ -2,7 +2,10 @@
     width: 400px;
     height: 266px;
 }
-
+img{
+    width: 100%;
+    height: auto;
+}
 .body {
     background-color: antiquewhite;
 }
@@ -19,4 +22,37 @@
 .spacing {
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+.learn-title{
+    padding-top: 100px;
+    padding-left: 70px;
+}
+
+.navbar-nav{
+    padding-left: 25%;
+}
+
+.shopping{
+    background-color: rgb(228, 184, 63);
+    padding-bottom: 40px;
+    padding-top: 40px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.step2-img{
+    width: 100%;
+    height: auto;
+}
+.step2-text{
+    padding-left:7%;
+    padding-top: 5%;
+    padding-bottom: 80%;
+}
+
+.step3-text{
+    padding-left:7%;
+    padding-top: 5%;
+    padding-bottom: 60%;
 }
