@@ -82,10 +82,10 @@ quiz_questions = {
     },
     "2":{
         "question_id": "2",
-        "title": "First question",
-        "items":[],
+        "title": "What to do with butter?",
+        "items":["Butter can be directly used after taking out from refrigerator.", "Use microwave to melt butter to liquid.", "Beat the butter until thick and fluffy."],
         "text": "",
-        "image": "",
+        "image": "https://www.orange.nsw.gov.au/gallery/wp-content/uploads/2021/12/SUNDAY-STASH-APRIL-Pancake-Mix-process-1-100419-dL2vyi.tmp_.jpg",
         "next_quiz": "3",
         "prev_quiz": "1"
     },

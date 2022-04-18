@@ -57,3 +57,31 @@ export function draggables(question){
         }
       });
 }
+
+export function quiz1(question){
+    console.log("quiz1 on roll")
+    var row = $("<div class='row'></div>")
+    var col1 = $("<div class='col-md-4' id='list1'></div>")
+    $.each(question.items, function(index,value){
+        var list1 = $("<div id= '" + (index + 1) + "'>")
+        list1.html((index+1) + ": " + value)
+        col1.append(list1)
+    })
+    row.append(col1)
+    $("#details").append(row)
+
+    $('#' + 1 + '').click(function () {
+        $(this).css('background-color', 'red')
+    });
+    $('#' + 2 + '').click(function () {
+        $(this).css('background-color', 'red')
+    });
+    $('#' + 3 + '').click(function () {
+        $(this).css('background-color', 'green')
+    });
+}
+
+export function quiz2(question){
+    
+}
+
