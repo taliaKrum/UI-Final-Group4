@@ -62,7 +62,6 @@ export function draggables(question){
       var col6 = $("<input class='col-md-12'id='bowl1_input'/>")
       $("#details").append(col5)
       $("#details").append(col6)
-      var flag = 0;
 
       $(':input').on('propertychange input', function (e) {
         var valueChanged = false;
@@ -77,18 +76,26 @@ export function draggables(question){
             var str = $(this).val().toLowerCase();
             if(~str.indexOf("flour") & ~str.indexOf("baking") & ~str.indexOf("salt")){
                 $(this).css('background-color', 'green')
-                flag = 1
+                $.ajax({
+                    url: '/add_correct',
+                    dataType : "json",
+                    data : JSON.stringify(1),
+                    type: 'POST',
+                    contentType: "application/json; charset=utf-8",
+                    success: function(response) {
+                        console.log(response);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
             }
             else {
                 $(this).css('background-color', 'red')
-                flag = -1
             }
             
         }
     });
-    
-    return flag
-
 }
 
 export function quiz1(question){
@@ -102,19 +109,39 @@ export function quiz1(question){
     })
     row.append(col1)
     $("#details").append(row)
+    var flag = 0
 
     $('#' + 1 + '').click(function () {
         $(this).css('background-color', 'red')
+        flag += 1
     });
     $('#' + 2 + '').click(function () {
         $(this).css('background-color', 'red')
+        flag += 1
     });
     $('#' + 3 + '').click(function () {
         $(this).css('background-color', 'green')
-    });
+        if (flag < 2){
+            $.ajax({
+                url: '/add_correct',
+                dataType : "json",
+                data : JSON.stringify(1),
+                type: 'POST',
+                contentType: "application/json; charset=utf-8",
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+        });
 }
 
 export function quiz2(question){
+    var row = $("<h1>Your Quiz Score is " + tracker + " / 2 </div>")
+    $("#details").append(row)
 
 }
 

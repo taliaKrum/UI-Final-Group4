@@ -91,10 +91,10 @@ quiz_questions = {
     },
     "3":{
         "question_id": "3",
-        "title": "First question",
+        "title": "End of Quiz",
         "items":[],
         "text": "",
-        "image": "",
+        "image": "https://thumbs.dreamstime.com/b/freshly-baked-cupcakes-oven-freshly-baked-cupcakes-oven-103971786.jpg",
         "next_quiz": "4",
         "prev_quiz": "2"
     },
@@ -119,7 +119,6 @@ quiz_questions = {
 }
 
 #user quiz answer tracker 
-global tracker
 tracker = 0
 
 @app.route('/')
@@ -141,7 +140,7 @@ def quiz(quiz_id):
 @app.route('/add_correct', methods=['GET', 'POST'])
 
 def add_correct():
-
+    global tracker 
     tracker += 1
     return tracker
 
