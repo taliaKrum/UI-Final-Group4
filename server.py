@@ -72,9 +72,54 @@ lessons = {
 
 quiz_questions = {
     "1":{
-        "question": "placeholder"
-    }
+        "question_id": "1",
+        "title": "Step 1: Drag ingredients into the right bowl!",
+        "Bowl1":["Flour", "Baking powder", "Salt"],
+        "Bowl2": ["butter", "sugar"],
+        "image":"https://www.wseetonline.com/rs/wp-content/uploads/2022/02/0764612a67bae5342d7f57abda5c78b0.jpg",
+        "next_quiz": "2",
+        "prev_quiz": "1"
+    },
+    "2":{
+        "question_id": "2",
+        "title": "What to do with butter?",
+        "items":["Butter can be directly used after taking out from refrigerator.", "Use microwave to melt butter to liquid.", "Beat the butter until thick and fluffy."],
+        "text": "",
+        "image": "https://www.orange.nsw.gov.au/gallery/wp-content/uploads/2021/12/SUNDAY-STASH-APRIL-Pancake-Mix-process-1-100419-dL2vyi.tmp_.jpg",
+        "next_quiz": "3",
+        "prev_quiz": "1"
+    },
+    "3":{
+        "question_id": "3",
+        "title": "End of Quiz",
+        "items":[],
+        "text": "",
+        "image": "https://thumbs.dreamstime.com/b/freshly-baked-cupcakes-oven-freshly-baked-cupcakes-oven-103971786.jpg",
+        "next_quiz": "4",
+        "prev_quiz": "2"
+    },
+    "4":{
+        "question_id": "4",
+        "title": "First question",
+        "items":[],
+        "text": "",
+        "image": "",
+        "next_quiz": "5",
+        "prev_quiz": "3"
+    },
+    "5":{
+        "question_id": "5",
+        "title": "First question",
+        "items":[],
+        "text": "",
+        "image": "",
+        "next_quiz": "6",
+        "prev_quiz": "3"
+    },
 }
+
+#user quiz answer tracker 
+tracker = 0
 
 @app.route('/')
 def home():
@@ -90,7 +135,15 @@ def learn(lesson_id):
 @app.route('/quiz/<quiz_id>')
 def quiz(quiz_id):
     question = quiz_questions[quiz_id]
-    return render_template('quiz.html', question = question)
+    return render_template('quiz.html', question = question, tracker=tracker)
+
+@app.route('/add_correct', methods=['GET', 'POST'])
+
+def add_correct():
+    global tracker 
+    tracker += 1
+    return tracker
+
 
 if __name__ == '__main__':
    app.run(debug = True)

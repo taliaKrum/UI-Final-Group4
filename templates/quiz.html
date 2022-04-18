@@ -2,16 +2,47 @@
 
 {% block content %}
 
-<script type="text/javascript" src="{{ url_for('static', filename = 'quiz.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename = 'quiz.js') }}"></script>
 
 <script>
     let question = {{question|tojson}}
-    console.log(quiz) //this is what is printing out when refresh page
+    let tracker = {{tracker|tojson}}
+
+    console.log(question) //this is what is printing out when refresh page
 </script>
 
 <body>
-    <div>QUIZ PLACEHOLDER</div>
-    <br>
-    <button id="next-button-quiz" class="btn btn-warning">Next</button>
+    <div class="container">
+        
+        <br>
+        <div class="spacing row">
+            <div class="col-md-7">
+                <img src="{{question.image}}">
+            </div>
+            
+            <div class="col-md-3 learn-title">
+                <h2><i>{{question.title}} </i></h2>
+
+            </div>
+        </div>
+        <br>
+        <div class="details" id="details">
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-2">
+                <button id="prev-button" class="btn btn-warning">Prev</button>
+            </div>
+            <div class="col-md-8"></div>
+            <div class="col-md-2">
+                <button id="next-button" class="btn btn-warning">Next</button>
+            </div>
+        </div>
+        <br>
+        <br>
+    </div>
+    
+    
 </body>
 {% endblock %}
