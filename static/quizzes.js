@@ -142,6 +142,19 @@ export function quiz1(question){
 export function quiz2(question){
     var row = $("<h1>Your Quiz Score is " + tracker + " / 2 </div>")
     $("#details").append(row)
+    $.ajax({
+        url: '/reset_tracker',
+        dataType : "json",
+        data : JSON.stringify(1),
+        type: 'POST',
+        contentType: "application/json; charset=utf-8",
+        success: function(response) {
+            console.log(response);
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
 
 }
 

@@ -13,9 +13,9 @@ function load(question){
     else if(question.question_id == "3"){
         quiz2(question)
     }
-    else if(question.question_id == "4"){
-        step3(lesson)
-    }
+    // else if(question.question_id == "4"){
+    //     step3(lesson)
+    // }
     
 }
 
@@ -23,6 +23,7 @@ $(document).ready(function() {
     load(question)
 
     $("#next-button").click(function(){
+        if(question.question_id != 3)
         window.location.href = "/quiz/"+question.next_quiz+""
     })
     $("#prev-button").click(function(){
