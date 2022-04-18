@@ -4,7 +4,7 @@ export function draggables(question){
     var col1 = $("<div class='col-md-4' id='list1'></div>")
     $.each(question.Bowl1, function(index,value){
         var list1 = $("<div>")
-        list1.html((index+1) + ": " + value)
+        list1.html(value)
         list1.attr('data-name', value)
         list1.draggable({
             revert : "valid"
@@ -12,10 +12,9 @@ export function draggables(question){
         col1.append(list1)
     })
 
-    var col2 = $("<div class='col-md-4' id='list2'></div>")
     $.each(question.Bowl2, function(index,value){
         var list2 = $("<div>")
-        list2.html((index+1) + ": " + value)
+        list2.html(value)
         list2.attr('data-name', value)
         list2.draggable({
             revert : "valid"
@@ -56,6 +55,40 @@ export function draggables(question){
               .html( "Dropped!" );
         }
       });
+
+      $("#details").append("<br/>")
+
+      var col5 = $("<div class='col-md-12'><div id='temp' class='temp'>Write the ingridients that should go in the bowl 1 (hint: dry ingridients) below with spaces between words! </div></div>")
+      var col6 = $("<input class='col-md-12'id='bowl1_input'/>")
+      $("#details").append(col5)
+      $("#details").append(col6)
+      var flag = 0;
+
+      $(':input').on('propertychange input', function (e) {
+        var valueChanged = false;
+    
+        if (e.type=='propertychange') {
+            valueChanged = e.originalEvent.propertyName=='value';
+        } else {
+            valueChanged = true;
+        }
+        if (valueChanged) {
+            
+            var str = $(this).val().toLowerCase();
+            if(~str.indexOf("flour") & ~str.indexOf("baking") & ~str.indexOf("salt")){
+                $(this).css('background-color', 'green')
+                flag = 1
+            }
+            else {
+                $(this).css('background-color', 'red')
+                flag = -1
+            }
+            
+        }
+    });
+    
+    return flag
+
 }
 
 export function quiz1(question){
@@ -82,6 +115,6 @@ export function quiz1(question){
 }
 
 export function quiz2(question){
-    
+
 }
 

@@ -6,6 +6,8 @@
 
 <script>
     let question = {{question|tojson}}
+    let tracker = {{tracker|tojson}}
+
     console.log(question) //this is what is printing out when refresh page
 </script>
 
@@ -20,6 +22,8 @@
             
             <div class="col-md-3 learn-title">
                 <h2><i>{{question.title}} </i></h2>
+                <h2><i>{{tracker}} </i></h2>
+
             </div>
         </div>
         <br>

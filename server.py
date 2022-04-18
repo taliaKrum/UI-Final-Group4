@@ -74,8 +74,8 @@ quiz_questions = {
     "1":{
         "question_id": "1",
         "title": "Step 1: Drag ingredients into the right bowl!",
-        "Bowl1":["Flour", "baking powder", "salt"],
-        "Bowl2": ["Butter", "sugar"],
+        "Bowl1":["Flour", "Baking powder", "Salt"],
+        "Bowl2": ["butter", "sugar"],
         "image":"https://www.wseetonline.com/rs/wp-content/uploads/2022/02/0764612a67bae5342d7f57abda5c78b0.jpg",
         "next_quiz": "2",
         "prev_quiz": "1"
@@ -118,6 +118,10 @@ quiz_questions = {
     },
 }
 
+#user quiz answer tracker 
+global tracker
+tracker = 0
+
 @app.route('/')
 def home():
    return render_template('homepage.html') 
@@ -132,7 +136,15 @@ def learn(lesson_id):
 @app.route('/quiz/<quiz_id>')
 def quiz(quiz_id):
     question = quiz_questions[quiz_id]
-    return render_template('quiz.html', question = question)
+    return render_template('quiz.html', question = question, tracker=tracker)
+
+@app.route('/add_correct', methods=['GET', 'POST'])
+
+def add_correct():
+
+    tracker += 1
+    return tracker
+
 
 if __name__ == '__main__':
    app.run(debug = True)
