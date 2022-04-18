@@ -144,6 +144,12 @@ def add_correct():
     tracker += 1
     return tracker
 
+@app.route('/reset_tracker', methods=['GET', 'POST'])
+
+def reset_tracker():
+    global tracker 
+    tracker = 0
+    return tracker
 
 if __name__ == '__main__':
    app.run(debug = True)
