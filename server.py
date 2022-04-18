@@ -72,8 +72,50 @@ lessons = {
 
 quiz_questions = {
     "1":{
-        "question": "placeholder"
-    }
+        "question_id": "1",
+        "title": "Step 1: Drag ingredients into the right bowl!",
+        "Bowl1":["Flour", "baking powder", "salt"],
+        "Bowl2": ["Butter", "sugar"],
+        "image":"https://www.wseetonline.com/rs/wp-content/uploads/2022/02/0764612a67bae5342d7f57abda5c78b0.jpg",
+        "next_quiz": "2",
+        "prev_quiz": "1"
+    },
+    "2":{
+        "question_id": "2",
+        "title": "First question",
+        "items":[],
+        "text": "",
+        "image": "",
+        "next_quiz": "3",
+        "prev_quiz": "1"
+    },
+    "3":{
+        "question_id": "3",
+        "title": "First question",
+        "items":[],
+        "text": "",
+        "image": "",
+        "next_quiz": "4",
+        "prev_quiz": "2"
+    },
+    "4":{
+        "question_id": "4",
+        "title": "First question",
+        "items":[],
+        "text": "",
+        "image": "",
+        "next_quiz": "5",
+        "prev_quiz": "3"
+    },
+    "5":{
+        "question_id": "5",
+        "title": "First question",
+        "items":[],
+        "text": "",
+        "image": "",
+        "next_quiz": "6",
+        "prev_quiz": "3"
+    },
 }
 
 @app.route('/')
