@@ -1,5 +1,7 @@
 
 let shoppingList = []
+let bowl0 = []
+let bowl1 = []
 
 function initShopping(items) {
     $("#shlist").empty();
@@ -10,6 +12,29 @@ function initShopping(items) {
         });
         $("#shlist").append(ing);
     })
+}
+
+function initBowl(i, items) {
+    if (i==0){
+        $("#ingDrop0").empty();
+        $.each(items, function(i, val) {
+            let ing = $("<div id='draggedIng'>"+val+"</div>")
+            ing.draggable({
+                revert: "invalid"
+            });
+            $("#ingDrop0").append(ing);
+        })
+    }
+    else {
+        $("#ingDrop1").empty();
+        $.each(items, function(i, val) {
+            let ing = $("<div id='draggedIng'>"+val+"</div>")
+            ing.draggable({
+                revert: "invalid"
+            });
+            $("#ingDrop1").append(ing);
+        })
+    }
 }
 
 export function ingredients(lesson){
@@ -43,23 +68,62 @@ export function ingredients(lesson){
         }
     })
 }
+
 export function step1(lesson){
+    let row
      $.each(lesson.items, function(index,value){
-        var row = $("<div class='row'></div><br>")
+        row = $("<div id="+index+" class='row'></div><br>")
         var col1 = $("<div class='col-md-2'><img src='https://t3.ftcdn.net/jpg/04/26/13/92/360_F_426139222_xZ74I0LZQUcdKOsvvmdfrd0tE2JKl2JZ.jpg'></div>")
         var col2 = $("<div class='col-md-4'></div>")
+        var drop = $("<div id='ingDrop"+index+"' class='col-md-5'>Drag Correct Ingredients Here:</div>") 
         
         col2.append(value)
         row.append(col1)
         row.append(col2)
+        row.append(drop)
         $("#details").append(row)
     })
+
+    var col3 = $("<div class='col-md-12'></div>")
+    $.each(lesson.extra_images, function(i, val){
+        let bowl = $("<img id="+i+" class='ingredient ing-img' src="+val+">")
+        // bowl.html(val)
+        // bowl.attr('data-name', val)
+        bowl.draggable({
+            revert : function(dropped){
+                return dropped == false;
+            }
+        })
+        col3.append(bowl)
+    })
+
     var row3 = $("<div class='row'></div><br>")
-    var col = $("<div class='col-md-8'></div>")
+    var col = $("<div id='directions' class='col-md-8'></div>")
     col.append(lesson.text)
+    col.append(col3)
     row3.append(col)
     $("#details").append(row3)
+
+    $("#ingDrop0").droppable({
+        drop: function(event, ui) {
+            let ing = ui.draggable.prop('id');
+            //IF ING IS BETWEEN INDEX
+            bowl0.push(lesson.extra_images[ing]);
+            initBowl(0, bowl0);
+            console.log(bowl0)
+        }
+    })
+    $("#ingDrop1").droppable({
+        drop: function(event, ui) {
+            let ing = ui.draggable.prop('id');
+            //IF ING IS BETWEEN INDEX then push
+            bowl1.push(lesson.extra_images[ing]);
+            initBowl(1, bowl1);
+            console.log(bowl1)
+        }
+    }) 
 }
+
 export function step2(lesson){
     var r = $("<div class='row'></div>")
     var col1 = $("<div class='col-md-3'></div>")

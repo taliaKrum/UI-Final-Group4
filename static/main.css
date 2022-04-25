@@ -60,3 +60,8 @@ img{
     background-color: gold;
     cursor: move;
 }
+
+.ing-img {
+    height: 100px;
+    width: 100px;
+}

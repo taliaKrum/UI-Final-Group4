@@ -18,9 +18,12 @@ function load(lesson){
 
 $(document).ready(function() {
     load(lesson)
+    if (lesson.lesson_id == "7") {
+        $("#next-button").html("Start Quiz!")
+    }
     $("#next-button").click(function(){
-        if(lesson.next_lesson == "end"){
-            console.log("end")
+        if(lesson.lesson_id == "7"){
+            console.log("end learning")
             window.location.href = "/quiz/1"
         }
         else {
