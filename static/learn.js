@@ -1,4 +1,5 @@
-import {ingredients, step1, step2, step3} from '/static/lessons.js';
+// import { step4 } from './lessons';
+import {ingredients, step1, step2, step3, step4} from '/static/lessons.js';
 
 function load(lesson){
     console.log(lesson.lesson_id)
@@ -13,7 +14,9 @@ function load(lesson){
     else if(lesson.lesson_id == "4"){
         step3(lesson)
     }
-    
+    else if (lesson.lesson_id == "5") {
+        step4(lesson)
+    }
 }
 
 $(document).ready(function() {
