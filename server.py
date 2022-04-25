@@ -18,7 +18,7 @@ lessons = {
         "lesson_id": "2",
         "title": "Step 1 - Mix Ingredients",
         "items": ["Bowl 1: Flour, baking powder, and salt.", "Bowl 2: Butter and sugar."],
-        "text": "Beat with an electric mixer on medium-high speed 5 minutes until thick and fluffy.",
+        "text": "Note: Beat with an electric mixer on medium-high speed 5 minutes until thick and fluffy.",
         "image":"https://www.wseetonline.com/rs/wp-content/uploads/2022/02/0764612a67bae5342d7f57abda5c78b0.jpg",
         "next_lesson": "3",
         "prev_lesson": "1"
@@ -27,7 +27,7 @@ lessons = {
         "lesson_id": "3",
         "title": "Step 2 - Beat  other ingredients",
         "items": ["1. Bowl 1 from last step","2. Bowl 2 from last step","3. Add 3 eggs", "4. Add 2 tsp vanilla","5. Add flours in bowl 1", "6. Add ½ cup milk"],
-        "text": "Beat well between additions.",
+        "text": "Note: Beat well between additions.",
         "image":"https://www.orange.nsw.gov.au/gallery/wp-content/uploads/2021/12/SUNDAY-STASH-APRIL-Pancake-Mix-process-1-100419-dL2vyi.tmp_.jpg",
         "next_lesson": "4",
         "prev_lesson": "2"
@@ -44,8 +44,8 @@ lessons = {
     "5":{
         "lesson_id": "5",
         "title": "How to decorate your cupcake? - Cupcake Frosting",
-        "items": ["8 oz cream cheese", "2 cups sugar", "1 1/2 cups heavy whipping cream"],
-        "text": "",
+        "items": ["Heavy Whipping Cream (1 1/2 cups)", "Cream Cheese (8 oz)", "Sugar (2 cups)"],
+        "text": "Your shopping list: ",
         "image":"https://www.thespruceeats.com/thmb/42NhT-_5EuXlkGyZ4cW82VwbwX4=/3042x2028/filters:no_upscale():max_bytes(150000):strip_icc()/vegan-cream-cheese-frosting-recipe-3378246-step-06-7dab8ba1580342ccbcb0032f76b6fe9f.jpg",
         "next_lesson": "6",
         "prev_lesson": "4"

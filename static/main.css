@@ -56,3 +56,23 @@ img{
     padding-top: 5%;
     padding-bottom: 60%;
 }
+
+.arrow{
+    padding-top: 100px;
+}
+
+.subtitle{
+    font-size: 30px;
+    color: rgb(102, 63, 5)
+}
+
+.general_text{
+    font-size: 20px;
+    color:rgb(102, 63, 5);
+    font-family: sans-serif;
+    
+}
+
+.note{
+    color: brown
+}

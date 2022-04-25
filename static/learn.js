@@ -1,4 +1,4 @@
-import {ingredients, step1, step2, step3} from '/static/lessons.js';
+import {ingredients, step1, step2, step3, frost_ing,frost_step1} from '/static/lessons.js';
 
 function load(lesson){
     console.log(lesson.lesson_id)
@@ -12,6 +12,11 @@ function load(lesson){
     }
     else if(lesson.lesson_id == "4"){
         step3(lesson)
+    }else if(lesson.lesson_id == "5"){
+        frost_ing(lesson)
+    }
+    else if(lesson.lesson_id == "6"){
+        frost_step1(lesson)
     }
     
 }
