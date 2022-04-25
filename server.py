@@ -12,7 +12,8 @@ lessons = {
         "text": "",
         "image":"https://natashaskitchen.com/wp-content/uploads/2020/05/Vanilla-Cupcakes-728x485.jpg",
         "next_lesson": "2",
-        "prev_lesson": "1"
+        "prev_lesson": "1",
+        "extra_images": []
     },
     "2":{
         "lesson_id": "2",
@@ -21,7 +22,8 @@ lessons = {
         "text": "Note: Beat with an electric mixer on medium-high speed 5 minutes until thick and fluffy.",
         "image":"https://www.wseetonline.com/rs/wp-content/uploads/2022/02/0764612a67bae5342d7f57abda5c78b0.jpg",
         "next_lesson": "3",
-        "prev_lesson": "1"
+        "prev_lesson": "1",
+        "extra_images": ["../static/flour.jpeg", "../static/bakingPowder.png", "../static/salt.png",  "../static/butter.jpeg", "../static/sugar.png"]
     },
     "3":{
         "lesson_id": "3",
@@ -30,7 +32,8 @@ lessons = {
         "text": "Note: Beat well between additions.",
         "image":"https://www.orange.nsw.gov.au/gallery/wp-content/uploads/2021/12/SUNDAY-STASH-APRIL-Pancake-Mix-process-1-100419-dL2vyi.tmp_.jpg",
         "next_lesson": "4",
-        "prev_lesson": "2"
+        "prev_lesson": "2",
+        "extra_images": []
     },
     "4":{
         "lesson_id": "4",
@@ -39,7 +42,8 @@ lessons = {
         "text": "Note: Don't Overfill - Fill cupcake liners 2/3 full or they will overflow and cause a muffin top.",
         "image":"https://thumbs.dreamstime.com/b/freshly-baked-cupcakes-oven-freshly-baked-cupcakes-oven-103971786.jpg",
         "next_lesson": "5",
-        "prev_lesson": "3"
+        "prev_lesson": "3",
+        "extra_images": []
     },
     "5":{
         "lesson_id": "5",
@@ -48,7 +52,8 @@ lessons = {
         "text": "Your shopping list: ",
         "image":"https://www.thespruceeats.com/thmb/42NhT-_5EuXlkGyZ4cW82VwbwX4=/3042x2028/filters:no_upscale():max_bytes(150000):strip_icc()/vegan-cream-cheese-frosting-recipe-3378246-step-06-7dab8ba1580342ccbcb0032f76b6fe9f.jpg",
         "next_lesson": "6",
-        "prev_lesson": "4"
+        "prev_lesson": "4",
+        "extra_images": []
     },
     "6":{
         "lesson_id": "6",
@@ -57,7 +62,8 @@ lessons = {
         "text": "",
         "image":"https://blog.wilton.com/wp-content/uploads/2020/02/how-to-make-cupcakes-from-scratch.jpg",
         "next_lesson": "7",
-        "prev_lesson": "5"
+        "prev_lesson": "5",
+        "extra_images": []
     },
     "7":{
         "lesson_id": "7",
@@ -66,7 +72,8 @@ lessons = {
         "text": "",
         "image":"https://images-gmi-pmc.edge-generalmills.com/72d522ef-cf29-47e6-81cf-74c7486d24f5.jpg",
         "next_lesson": "7",
-        "prev_lesson": "6"
+        "prev_lesson": "6",
+        "extra_images": []
     }
 }
 

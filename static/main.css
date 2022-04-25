@@ -9,7 +9,6 @@ img{
 .body {
     background-color: antiquewhite;
 }
-
 .navcolor {
     /* background-color: #ffc107!important; */
     background-color: rgb(217, 185, 138)!important;
@@ -75,4 +74,14 @@ img{
 
 .note{
     color: brown
+}
+
+.ingredient:hover{
+    background-color: gold;
+    cursor: move;
+}
+
+.ing-img {
+    height: 100px;
+    width: 100px;
 }

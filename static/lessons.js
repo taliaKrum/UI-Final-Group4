@@ -1,71 +1,129 @@
+
+let shoppingList = []
+let bowl0 = []
+let bowl1 = []
+
+function initShopping(items) {
+    $("#shlist").empty();
+    $.each(items, function(i, val) {
+        let ing = $("<div id='draggedIng'>"+val+"</div>")
+        ing.draggable({
+            revert: "invalid"
+        });
+        $("#shlist").append(ing);
+    })
+}
+
+function initBowl(i, items) {
+    if (i==0){
+        $("#ingDrop0").empty();
+        $.each(items, function(i, val) {
+            let ing = $("<div id='draggedIng'>"+val+"</div>")
+            ing.draggable({
+                revert: "invalid"
+            });
+            $("#ingDrop0").append(ing);
+        })
+    }
+    else {
+        $("#ingDrop1").empty();
+        $.each(items, function(i, val) {
+            let ing = $("<div id='draggedIng'>"+val+"</div>")
+            ing.draggable({
+                revert: "invalid"
+            });
+            $("#ingDrop1").append(ing);
+        })
+    }
+}
+
 export function ingredients(lesson){
     var row = $("<div class='row'></div>")
     var col1 = $("<div class='col-md-4' id='list'></div>")
     $.each(lesson.items, function(index,value){
-        var list = $("<div>")
-        list.html((index+1) + ": " + value)
+        var list = $("<div class='ingredient'>")
+        // list.html((index+1) + ": " + value)
+        list.html(value)
         list.attr('data-name', value)
         list.draggable({
             revert : function(dropped){
                 return dropped == false;
             }
- 
         })
         col1.append(list)
     })
     row.append(col1)
 
-    var col2 = $("<div class='col-md-4' id='shopping'><div id='shopping' class='shopping'>Shopping List</div></div>")
+    var col2 = $("<div class='col-md-4' class='shop'><div id='shopping' class='shopping'>Shopping List</div><div id='shlist'></div></div>")
     row.append(col2)
     $("#details").append(row)
-}
-export function step1(lesson){
-    var imgs = [
-        'https://www.bettycrocker.com/-/media/Images/BC/content/how-to/baking-tips/why-the-flour-you-bake-with-matters/flour-matters_01.jpg',
-        'https://www.washingtonpost.com/resizer/_Kysbe_uZFCHOf1LghUy3g-PYQM=/arc-anglerfish-washpost-prod-washpost/public/H3GYFKWPQII6XIREXVM32IQZPQ.jpg',
-        'https://www.foodnavigator.com/var/wrbm_gb_food_pharma/storage/images/9/0/8/1/2321809-1-eng-GB/Quiet-salt-reduction-is-vital-but-gourmet-salt-growth-may-stifle-industry-efforts.jpg',
-        'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F19%2F2018%2F02%2F13%2Ffield-image-sticks-of-butter-hero-getty-2000.jpg&q=60',
-        'https://blogs.oncolink.org/wp-content/uploads/sugar.2-810x476-1.jpg'
-    ]
-    var count = 0
-     $.each(lesson.items, function(index,value){
-        var row = $("<div class='row'></div><br>")
-        var col1l = $("<div class='col-md-2'><img src='https://t3.ftcdn.net/jpg/04/26/13/92/360_F_426139222_xZ74I0LZQUcdKOsvvmdfrd0tE2JKl2JZ.jpg'></div>")
-        var col2l = $("<div class='col-md-10'></div>")
-        
-        col2l.append($("<div class='row'>"+value+"</div><br>"))
-        var row2 = $("<div class='row'></div><br>")
-        var col1 = $("<div class='col-md-2'><img src='"+imgs[count]+"'></div>")
-        count += 1
-        var col2 = $("<div class='col-md-1'><img src='https://img.freepik.com/free-photo/clay-plus-sign-mathematics-beige-cute-graphic-kids_53876-139941.jpg'></div>")
-        var col3 = $("<div class='col-md-2'><img src='"+imgs[count]+"'></div>")
-        count += 1
 
-        row2.append(col1)
-        //row2.append($("<div class='col-md-1'></div>"))
-        row2.append(col2)
-        //row2.append($("<div class='col-md-1'></div>"))
-        row2.append(col3)
-
-        if(index == 0){
-            var col4 = $("<div class='col-md-1'><img src='https://img.freepik.com/free-photo/clay-plus-sign-mathematics-beige-cute-graphic-kids_53876-139941.jpg'></div>")
-            var col5 = $("<div class='col-md-2'><img src='"+imgs[count]+"'></div>")
-            count += 1
-            row2.append(col4)
-            row2.append(col5)
+    $("#shopping").droppable({
+        drop: function(event, ui) {
+            let ing = ui.draggable.text();
+            let i = lesson.items.indexOf(ing);
+            shoppingList.push(lesson.items[i]);
+            initShopping(shoppingList);
+            console.log(shoppingList)
         }
+    })
+}
+
+export function step1(lesson){
+    let row
+     $.each(lesson.items, function(index,value){
+        row = $("<div id="+index+" class='row'></div><br>")
+        var col1 = $("<div class='col-md-2'><img src='https://t3.ftcdn.net/jpg/04/26/13/92/360_F_426139222_xZ74I0LZQUcdKOsvvmdfrd0tE2JKl2JZ.jpg'></div>")
+        var col2 = $("<div class='col-md-4'></div>")
+        var drop = $("<div id='ingDrop"+index+"' class='col-md-5'>Drag Correct Ingredients Here:</div>") 
         
-        col2l.append(row2)
-        row.append(col1l)
-        row.append(col2l)
+        col2.append(value)
+        row.append(col1)
+        row.append(col2)
+        row.append(drop)
         $("#details").append(row)
     })
+
+    var col3 = $("<div class='col-md-12'></div>")
+    $.each(lesson.extra_images, function(i, val){
+        let bowl = $("<img id="+i+" class='ingredient ing-img' src="+val+">")
+        // bowl.html(val)
+        // bowl.attr('data-name', val)
+        bowl.draggable({
+            revert : function(dropped){
+                return dropped == false;
+            }
+        })
+        col3.append(bowl)
+    })
+
     var row3 = $("<div class='row'></div><br>")
-    var col = $("<div class='col-md-8 note'></div>")
+    var col = $("<div id='directions' class='col-md-8'></div>")
     col.append(lesson.text)
+    col.append(col3)
     row3.append(col)
     $("#details").append(row3)
+
+    $("#ingDrop0").droppable({
+        drop: function(event, ui) {
+            let ing = ui.draggable.prop('id');
+            //IF ING IS BETWEEN INDEX
+            bowl0.push(lesson.extra_images[ing]);
+            initBowl(0, bowl0);
+            console.log(bowl0)
+        }
+    })
+    $("#ingDrop1").droppable({
+        drop: function(event, ui) {
+            let ing = ui.draggable.prop('id');
+            //IF ING IS BETWEEN INDEX then push
+            bowl1.push(lesson.extra_images[ing]);
+            initBowl(1, bowl1);
+            console.log(bowl1)
+        }
+    }) 
 }
+
 export function step2(lesson){
     var r = $("<div class='row'></div>")
     var col1 = $("<div class='col-md-3'></div>")
