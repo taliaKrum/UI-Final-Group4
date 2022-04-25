@@ -98,7 +98,7 @@ export function step1(lesson){
     })
 
     var row3 = $("<div class='row'></div><br>")
-    var col = $("<div id='directions' class='col-md-8'></div>")
+    var col = $("<div id='directions' class='col-md-8 note'></div>")
     col.append(lesson.text)
     col.append(col3)
     row3.append(col)

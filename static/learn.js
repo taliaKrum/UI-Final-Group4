@@ -22,6 +22,12 @@ function load(lesson){
 }
 
 $(document).ready(function() {
+    if(lesson.lesson_id == "1"){
+        document.getElementById("prev-button").disabled = true;
+    }
+    else if(lesson.lesson_id == "7"){
+        document.getElementById("next-button").disabled = true;
+    }
     load(lesson)
     $("#next-button").click(function(){
         if(lesson.next_lesson == "end"){
