@@ -1,4 +1,4 @@
-export function draggables(question){
+export function quiz1(question){
 
     var row = $("<div class='row'></div>")
     var col1 = $("<div class='col-md-4' id='list1'></div>")
@@ -98,14 +98,15 @@ export function draggables(question){
     });
 }
 
-export function quiz1(question){
+export function quiz2(question){
     console.log("quiz1 on roll")
     var row = $("<div class='row'></div>")
-    var col1 = $("<div class='col-md-4' id='list1'></div>")
+    var col1 = $("<div class='col-md-8' id='list1'></div>")
     $.each(question.items, function(index,value){
-        var list1 = $("<div id= '" + (index + 1) + "'>")
+        var list1 = $("<div id= '" + (index + 1) + "' style='cursor: pointer; padding: 3px;'>")
         list1.html((index+1) + ": " + value)
         col1.append(list1)
+        col1.append("<br/>")
     })
     row.append(col1)
     $("#details").append(row)
@@ -139,7 +140,7 @@ export function quiz1(question){
         });
 }
 
-export function quiz2(question){
+export function quizEnd(question){
     var row = $("<h1>Your Quiz Score is " + tracker + " / 2 </div>")
     $("#details").append(row)
     $.ajax({
