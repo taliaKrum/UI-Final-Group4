@@ -14,28 +14,6 @@ function initShopping(items) {
     })
 }
 
-function initBowl(i, items) {
-    if (i==0){
-        $("#ingDrop0").empty();
-        $.each(items, function(i, val) {
-            let ing = $("<div id='draggedIng'>"+val+"</div>")
-            ing.draggable({
-                revert: "invalid"
-            });
-            $("#ingDrop0").append(ing);
-        })
-    }
-    else {
-        $("#ingDrop1").empty();
-        $.each(items, function(i, val) {
-            let ing = $("<div id='draggedIng'>"+val+"</div>")
-            ing.draggable({
-                revert: "invalid"
-            });
-            $("#ingDrop1").append(ing);
-        })
-    }
-}
 
 export function ingredients(lesson){
     var row = $("<div class='row'></div>")
@@ -71,11 +49,12 @@ export function ingredients(lesson){
 
 export function step1(lesson){
     let row
+    var drop
      $.each(lesson.items, function(index,value){
         row = $("<div id="+index+" class='row'></div><br>")
         var col1 = $("<div class='col-md-2'><img src='https://t3.ftcdn.net/jpg/04/26/13/92/360_F_426139222_xZ74I0LZQUcdKOsvvmdfrd0tE2JKl2JZ.jpg'></div>")
         var col2 = $("<div class='col-md-4'></div>")
-        var drop = $("<div id='ingDrop"+index+"' class='col-md-5'>Drag Correct Ingredients Here:</div>") 
+        drop = $("<div id='ingDrop"+index+"' class='col-md-5'></div>") 
         
         col2.append(value)
         row.append(col1)
@@ -86,12 +65,33 @@ export function step1(lesson){
 
     var col3 = $("<div class='col-md-12'></div>")
     $.each(lesson.extra_images, function(i, val){
-        let bowl = $("<img id="+i+" class='ingredient ing-img' src="+val+">")
-        // bowl.html(val)
-        // bowl.attr('data-name', val)
-        bowl.draggable({
-            revert : function(dropped){
-                return dropped == false;
+        let bowl = $("<img id='click"+i+"' class='clickme ingredient ing-img' src="+val+">")
+        let measure 
+        bowl.on("click", function () {
+            if(bowl.prop('id')=='click0'){
+                $("#mflour").remove()
+                measure = $("<div id='mflour'>1 1/4 cups of flour</div>")
+                $("#ingDrop0").append(measure)
+            }
+            else if(bowl.prop('id')=='click1'){
+                $("#mbp").remove()
+                measure = $("<div id='mbp'>1 1/4 tsp of baking powder</div>")
+                $("#ingDrop0").append(measure)
+            }
+            else if(bowl.prop('id')=='click2'){
+                $("#msalt").remove()
+                measure = $("<div id='msalt'>1/2 tsp of salt</div>")
+                $("#ingDrop0").append(measure)
+            }
+            else if(bowl.prop('id')=='click3'){
+                $("#mbutter").remove()
+                measure = $("<div id='mbutter'>1/2 cup of butter</div>")
+                $("#ingDrop1").append(measure)
+            }
+            else if(bowl.prop('id')=='click4'){
+                $("#msugar").remove()
+                measure = $("<div id='msugar'>3/4 cup of sugar</div>")
+                $("#ingDrop1").append(measure)
             }
         })
         col3.append(bowl)
@@ -103,25 +103,6 @@ export function step1(lesson){
     col.append(col3)
     row3.append(col)
     $("#details").append(row3)
-
-    $("#ingDrop0").droppable({
-        drop: function(event, ui) {
-            let ing = ui.draggable.prop('id');
-            //IF ING IS BETWEEN INDEX
-            bowl0.push(lesson.extra_images[ing]);
-            initBowl(0, bowl0);
-            console.log(bowl0)
-        }
-    })
-    $("#ingDrop1").droppable({
-        drop: function(event, ui) {
-            let ing = ui.draggable.prop('id');
-            //IF ING IS BETWEEN INDEX then push
-            bowl1.push(lesson.extra_images[ing]);
-            initBowl(1, bowl1);
-            console.log(bowl1)
-        }
-    }) 
 }
 
 export function step2(lesson){
