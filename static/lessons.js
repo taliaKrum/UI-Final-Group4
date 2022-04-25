@@ -32,7 +32,7 @@ export function ingredients(lesson){
     })
     row.append(col1)
 
-    var col2 = $("<div class='col-md-4' class='shop'><div id='shopping' class='shopping'>Shopping List</div><div id='shlist'></div></div>")
+    var col2 = $("<div class='col-md-4' class='shop'><div id='shopping' class='shopping'>Shopping Cart</div><div id='shlist'></div></div>")
     row.append(col2)
     $("#details").append(row)
 
