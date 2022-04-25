@@ -1,4 +1,5 @@
-import {ingredients, step1, step2, step3} from '/static/lessons.js';
+// import { step4 } from './lessons';
+import {ingredients, step1, step2, step3, step4} from '/static/lessons.js';
 
 function load(lesson){
     console.log(lesson.lesson_id)
@@ -13,14 +14,19 @@ function load(lesson){
     else if(lesson.lesson_id == "4"){
         step3(lesson)
     }
-    
+    else if (lesson.lesson_id == "5") {
+        step4(lesson)
+    }
 }
 
 $(document).ready(function() {
     load(lesson)
+    if (lesson.lesson_id == "7") {
+        $("#next-button").html("Start Quiz!")
+    }
     $("#next-button").click(function(){
-        if(lesson.next_lesson == "end"){
-            console.log("end")
+        if(lesson.lesson_id == "7"){
+            console.log("end learning")
             window.location.href = "/quiz/1"
         }
         else {
