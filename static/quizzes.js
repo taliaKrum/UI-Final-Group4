@@ -1,58 +1,47 @@
-export function draggables(question){
+export function quiz1(question){
 
     var row = $("<div class='row'></div>")
-    var col1 = $("<div class='col-md-4' id='list1'></div>")
+    var col1 = $("<div class='col-md-2'></div>")
     $.each(question.Bowl1, function(index,value){
-        var list1 = $("<div>")
+        var list1 = $("<div class='ui-widget-content' style='z-index: 100; background-color: transparent;'>")
         list1.html(value)
-        list1.attr('data-name', value)
+        list1.attr('id', "list1")
         list1.draggable({
-            revert : "valid"
+            revert : "invalid"
         })
+        console.log(list1)
         col1.append(list1)
     })
 
     $.each(question.Bowl2, function(index,value){
-        var list2 = $("<div>")
+        var list2 = $("<div class='ui-widget-content' style='z-index: 100; background-color: transparent;'>")
         list2.html(value)
-        list2.attr('data-name', value)
+        list2.attr('id', "list2")
         list2.draggable({
-            revert : "valid"
+            revert : "invalid"
         })
         col1.append(list2)
     })
     row.append(col1)
 
-    var col3 = $("<div class='col-md-4'><div id='bowl1' class='shopping'>Bowl 1</div></div>")
+    var col3 = $("<div class='col-md-4'><div id='bowl1' class='shopping' style='z-index: 1;'>Bowl 1</div></div>")
     row.append(col3)
 
-    var col4 = $("<div class='col-md-4'><div id='bowl2' class='shopping'>Bowl 2</div></div>")
+    var col4 = $("<div class='col-md-4'><div id='bowl2' class='shopping' style='z-index: 1;'>Bowl 2</div></div>")
     row.append(col4)
 
     $("#details").append(row)
  
     $( "#bowl1" ).droppable({
-      classes: {
-        "ui-droppable-active": "ui-state-active",
-        "ui-droppable-hover": "ui-state-hover"
-      },
+      accept: "#list1",
       drop: function( event, ui ) {
         $( this )
-          .addClass( "ui-state-highlight" )
-          .find( "list1" )
-            .html( "Dropped!" );
       }
     });
     $( "#bowl2" ).droppable({
-        classes: {
-          "ui-droppable-active": "ui-state-active",
-          "ui-droppable-hover": "ui-state-hover"
-        },
+        accept: "#list2",
         drop: function( event, ui ) {
           $( this )
-            .addClass( "ui-state-highlight" )
-            .find( "list1" )
-              .html( "Dropped!" );
         }
       });
 
@@ -98,14 +87,15 @@ export function draggables(question){
     });
 }
 
-export function quiz1(question){
+export function quiz2(question){
     console.log("quiz1 on roll")
     var row = $("<div class='row'></div>")
-    var col1 = $("<div class='col-md-4' id='list1'></div>")
+    var col1 = $("<div class='col-md-8' id='list1'></div>")
     $.each(question.items, function(index,value){
-        var list1 = $("<div id= '" + (index + 1) + "'>")
+        var list1 = $("<div id= '" + (index + 1) + "' style='cursor: pointer; padding: 3px;'>")
         list1.html((index+1) + ": " + value)
         col1.append(list1)
+        col1.append("<br/>")
     })
     row.append(col1)
     $("#details").append(row)
@@ -139,14 +129,14 @@ export function quiz1(question){
         });
 }
 
-export function quiz2(question){
+export function quizEnd(question){
     var row = $("<h1>Your Quiz Score is " + tracker + " / 2 </div>")
     $("#details").append(row)
     $.ajax({
         url: '/reset_tracker',
         dataType : "json",
         data : JSON.stringify(1),
-        type: 'POST',
+        type: 'GET',
         contentType: "application/json; charset=utf-8",
         success: function(response) {
             console.log(response);
