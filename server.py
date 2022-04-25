@@ -13,7 +13,7 @@ lessons = {
         "image":"https://natashaskitchen.com/wp-content/uploads/2020/05/Vanilla-Cupcakes-728x485.jpg",
         "next_lesson": "2",
         "prev_lesson": "1",
-        "extra_images": []
+        "extra_images": ["../static/flour.jpeg", "../static/eggs.png", "../static/milk.png", "../static/bakingPowder.png", "../static/salt.png", "../static/butter.jpeg", "../static/sugar.png", "../static/vanilla.png"]
     },
     "2":{
         "lesson_id": "2",

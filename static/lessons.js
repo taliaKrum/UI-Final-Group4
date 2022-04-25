@@ -1,7 +1,6 @@
 
 let shoppingList = []
-let bowl0 = []
-let bowl1 = []
+let popUpList = []
 
 function initShopping(items) {
     $("#shlist").empty();
@@ -12,6 +11,14 @@ function initShopping(items) {
         });
         $("#shlist").append(ing);
     })
+}
+
+function initPopup(items) {
+    $("#popup").empty();
+    $.each(items, function(i, val) {
+        let pic = $("<img class='ing-img' id='ingPic"+i+"' src="+val+">")
+        $("#popup").append(pic);
+    }) 
 }
 
 
@@ -36,12 +43,17 @@ export function ingredients(lesson){
     row.append(col2)
     $("#details").append(row)
 
+    var col3 = $("<div id='popup' class='col-md-4'></div>")
+    row.append(col3)
+
     $("#shopping").droppable({
         drop: function(event, ui) {
             let ing = ui.draggable.text();
             let i = lesson.items.indexOf(ing);
             shoppingList.push(lesson.items[i]);
+            popUpList.push(lesson.extra_images[i]);
             initShopping(shoppingList);
+            initPopup(popUpList);
             console.log(shoppingList)
         }
     })
