@@ -9,7 +9,6 @@ img{
 .body {
     background-color: antiquewhite;
 }
-
 .navcolor {
     /* background-color: #ffc107!important; */
     background-color: rgb(217, 185, 138)!important;
@@ -55,4 +54,9 @@ img{
     padding-left:7%;
     padding-top: 5%;
     padding-bottom: 60%;
+}
+
+.ingredient:hover{
+    background-color: gold;
+    cursor: move;
 }

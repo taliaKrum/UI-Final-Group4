@@ -1,23 +1,47 @@
+
+let shoppingList = []
+
+function initShopping(items) {
+    $("#shlist").empty();
+    $.each(items, function(i, val) {
+        let ing = $("<div id='draggedIng'>"+val+"</div>")
+        ing.draggable({
+            revert: "invalid"
+        });
+        $("#shlist").append(ing);
+    })
+}
+
 export function ingredients(lesson){
     var row = $("<div class='row'></div>")
     var col1 = $("<div class='col-md-4' id='list'></div>")
     $.each(lesson.items, function(index,value){
-        var list = $("<div>")
-        list.html((index+1) + ": " + value)
+        var list = $("<div class='ingredient'>")
+        // list.html((index+1) + ": " + value)
+        list.html(value)
         list.attr('data-name', value)
         list.draggable({
             revert : function(dropped){
                 return dropped == false;
             }
- 
         })
         col1.append(list)
     })
     row.append(col1)
 
-    var col2 = $("<div class='col-md-4' id='shopping'><div id='shopping' class='shopping'>Shopping List</div></div>")
+    var col2 = $("<div class='col-md-4' class='shop'><div id='shopping' class='shopping'>Shopping List</div><div id='shlist'></div></div>")
     row.append(col2)
     $("#details").append(row)
+
+    $("#shopping").droppable({
+        drop: function(event, ui) {
+            let ing = ui.draggable.text();
+            let i = lesson.items.indexOf(ing);
+            shoppingList.push(lesson.items[i]);
+            initShopping(shoppingList);
+            console.log(shoppingList)
+        }
+    })
 }
 export function step1(lesson){
      $.each(lesson.items, function(index,value){
