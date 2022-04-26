@@ -1,7 +1,26 @@
+function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+}
+
 export function quiz1(question){
 
     var row = $("<div class='row'></div>")
-    var col1 = $("<div class='col-md-2'></div>")
+    var col1 = $("<div class='col-md-3'></div>")
+    var lists = []
     $.each(question.Bowl1, function(index,value){
         var list1 = $("<div class='ui-widget-content' style='z-index: 100; background-color: transparent;'>")
         list1.html(value)
@@ -9,8 +28,7 @@ export function quiz1(question){
         list1.draggable({
             revert : "invalid"
         })
-        console.log(list1)
-        col1.append(list1)
+        lists.push(list1)
     })
 
     $.each(question.Bowl2, function(index,value){
@@ -20,8 +38,10 @@ export function quiz1(question){
         list2.draggable({
             revert : "invalid"
         })
-        col1.append(list2)
+        lists.push(list2)
     })
+
+    col1.append(shuffle(lists))
     row.append(col1)
 
     var col3 = $("<div class='col-md-4'><div id='bowl1' class='shopping' style='z-index: 1;'>Bowl 1</div></div>")
@@ -31,74 +51,87 @@ export function quiz1(question){
     row.append(col4)
 
     $("#details").append(row)
- 
+    var col5 = $("<div class='col-md-12' style='margin-left: 300px'><div id='temp' class='temp'>Drag to the correct bowl! You have 2 chances!</div></div>")
+    $("#details").append(col5)
+    
+    var count = 0
+
     $( "#bowl1" ).droppable({
-      accept: "#list1",
+      accept: ".ui-widget-content",
       drop: function( event, ui ) {
-        $( this )
+        count++
+        if($(ui.draggable).attr("id") == "list1")
+            ui.draggable.css("background-color", "green")
+        else 
+            ui.draggable.css("background-color", "red") 
+        
+        if(count == 5){
+            check_droppable()
+        }
       }
     });
     $( "#bowl2" ).droppable({
-        accept: "#list2",
+        accept: ".ui-widget-content",
         drop: function( event, ui ) {
-          $( this )
+            count++
+            if($(ui.draggable).attr("id") == "list2")
+                ui.draggable.css("background-color", "green")
+            else 
+                ui.draggable.css("background-color", "red") 
+            
+            if(count == 5){
+                check_droppable()
+            }
         }
       });
 
       $("#details").append("<br/>")
 
-      var col5 = $("<div class='col-md-12'><div id='temp' class='temp'>Write the ingridients that should go in the bowl 1 (hint: dry ingridients) below with spaces between words! </div></div>")
-      var col6 = $("<input class='col-md-12'id='bowl1_input'/>")
-      $("#details").append(col5)
-      $("#details").append(col6)
+    // checking if less than 2 wrong answers 
+    function check_droppable(){
+        var wrongs = 0
+        var els = document.getElementsByClassName("ui-widget-content");
+        for(var i = 0; i < els.length; i++)
+        {
+            if (els[i].style.backgroundColor == "rgb(255, 0, 0)"){
+                wrongs ++
+                console.log("wrong up")
+            } else console.log("green up")
+        }
 
-      $(':input').on('propertychange input', function (e) {
-        var valueChanged = false;
+        if (wrongs < 2) {
+                        $.ajax({
+                        url: '/add_correct',
+                        dataType : "json",
+                        data : JSON.stringify(1),
+                        type: 'POST',
+                        contentType: "application/json; charset=utf-8",
+                        success: function(response) {
+                            console.log(response);
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    });
+        }
+    }
     
-        if (e.type=='propertychange') {
-            valueChanged = e.originalEvent.propertyName=='value';
-        } else {
-            valueChanged = true;
-        }
-        if (valueChanged) {
-            
-            var str = $(this).val().toLowerCase();
-            if(~str.indexOf("flour") & ~str.indexOf("baking") & ~str.indexOf("salt")){
-                $(this).css('background-color', 'green')
-                $.ajax({
-                    url: '/add_correct',
-                    dataType : "json",
-                    data : JSON.stringify(1),
-                    type: 'POST',
-                    contentType: "application/json; charset=utf-8",
-                    success: function(response) {
-                        console.log(response);
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    }
-                });
-            }
-            else {
-                $(this).css('background-color', 'red')
-            }
-            
-        }
-    });
 }
 
 export function quiz2(question){
-    console.log("quiz1 on roll")
     var row = $("<div class='row'></div>")
     var col1 = $("<div class='col-md-8' id='list1'></div>")
     $.each(question.items, function(index,value){
-        var list1 = $("<div id= '" + (index + 1) + "' style='cursor: pointer; padding: 3px;'>")
+        var list1 = $("<div class='ui-widget-content' id= '" + (index + 1) + "' style='cursor: pointer; padding: 3px; background-color: transparent;'>")
         list1.html((index+1) + ": " + value)
         col1.append(list1)
         col1.append("<br/>")
     })
     row.append(col1)
     $("#details").append(row)
+
+    var col5 = $("<div class='col-md-12' style='margin-left: 300px'><div id='temp' class='temp'>Select the correct answer! You have 2 chances!</div></div>")
+    $("#details").append(col5)
     var flag = 0
 
     $('#' + 1 + '').click(function () {
@@ -129,8 +162,78 @@ export function quiz2(question){
         });
 }
 
+export function quiz3(question){
+    var row = $("<div class='row'></div>")
+    var col1 = $("<div class='col-md-12' id='list1'></div>")
+    var lists = []
+    $.each(question.items, function(index,value){
+        lists.push(value)
+    })
+    shuffle(lists)
+    var text = ""
+    for (let i = 0; i < lists.length; i++) {
+        if(i == lists.length - 1)
+        text += lists[i]
+        else 
+        text += lists[i] + ", " 
+    }
+    console.log(text)
+    var list1 = $("<div class='ui-widget-content' id='lists' style='padding: 3px; background-color: transparent;'>")
+    list1.html(text)
+    col1.append(list1)
+    row.append(col1)
+    $("#details").append(row)
+    $("#details").append("<br>")
+
+
+      var col5 = $("<div class='col-md-12' style='margin-left: 200px'><div id='temp' class='temp'>Write the correct ingridients for cupcakes below with spaces between words! (choose 4)</div></div>")
+      var col6 = $("<input class='col-md-12'id='bowl1_input'/>")
+      $("#details").append(col5)
+      $("#details").append(col6)
+
+      var sent = 0
+    
+      $(':input').on('propertychange input', function (e) {
+        var valueChanged = false;
+    
+        if (e.type=='propertychange') {
+            valueChanged = e.originalEvent.propertyName=='value';
+        } else {
+            valueChanged = true;
+        }
+        if (valueChanged) {
+            var str = $(this).val().toLowerCase();
+            var counter = (str.match(/\,/g) || []).length;
+            console.log(counter)
+            if(~str.indexOf("flours") & ~str.indexOf("milk") & ~str.indexOf("eggs") & ~str.indexOf("vanilla") && counter==3){
+                sent ++
+                $(this).css('background-color', 'green')
+                if(sent==1){
+                $.ajax({
+                    url: '/add_correct',
+                    dataType : "json",
+                    data : JSON.stringify(1),
+                    type: 'POST',
+                    contentType: "application/json; charset=utf-8",
+                    success: function(response) {
+                        console.log(response);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            }
+            }
+            else {
+                $(this).css('background-color', 'red')
+            }
+            
+        }
+    });
+}
+
 export function quizEnd(question){
-    var row = $("<h1>Your Quiz Score is " + tracker + " / 2 </div>")
+    var row = $("<h1>Your Quiz Score is " + tracker + " / 3 </div>")
     $("#details").append(row)
     $.ajax({
         url: '/reset_tracker',

@@ -1,4 +1,4 @@
-import {quiz1, quiz2, quizEnd} from '/static/quizzes.js';
+import {quiz1, quiz2, quiz3, quizEnd} from '/static/quizzes.js';
 
 function load(question){
     console.log(question.question_id)
@@ -11,30 +11,31 @@ function load(question){
         console.log(tracker)
     }
     else if(question.question_id == "3"){
+        quiz3(question)
+    }
+    else if(question.question_id == "4"){
         quizEnd(question)
     }
-    // else if(question.question_id == "4"){
-    //     step3(lesson)
-    // }
     
 }
 
 $(document).ready(function() {
     load(question)
 
-    if(question.question_id == 3)
-        $("#next-button").html("Back to start of quiz!");
+    if(question.question_id == 4)
+        $("#next-button").html("Back to start!");
 
 
     $("#next-button").click(function(){
-        if (question.question_id != 3)
+        if (question.question_id != 4)
         window.location.href = "/quiz/"+question.next_quiz+""
         else 
         window.location.href = "/quiz/1"
     })
-    // $("#prev-button").click(function(){
-    //     window.location.href = "/quiz/"+question.prev_quiz+""
-    // })
+    $("#prev-button").click(function(){
+        if (question.question_id == 1)
+        window.location.href = "/learn/2"
+    })
 })
 
 
