@@ -18,8 +18,8 @@ lessons = {
     "2":{
         "lesson_id": "2",
         "title": "Step 1 - Mix Ingredients",
-        "items": ["Bowl 1: Flour, baking powder, and salt.", "Bowl 2: Butter and sugar."],
-        "text": "Note: Beat with an electric mixer on medium-high speed 5 minutes until thick and fluffy.",
+        "items": ["<b>Bowl 1:</b> Flour, baking powder, and salt.", "<b>Bowl 2:</b> Butter and sugar."],
+        "text": "Note: <b>Beat with an electric mixer</b> on medium-high speed for <b>5 minutes</b> until thick and fluffy.",
         "image":"https://www.wseetonline.com/rs/wp-content/uploads/2022/02/0764612a67bae5342d7f57abda5c78b0.jpg",
         "next_lesson": "3",
         "prev_lesson": "1",
@@ -28,12 +28,12 @@ lessons = {
     "3":{
         "lesson_id": "3",
         "title": "Step 2 - Beat  other ingredients",
-        "items": ["1. Bowl 1 from last step","2. Bowl 2 from last step","3. Add 3 eggs", "4. Add 2 tsp vanilla","5. Add flours in bowl 1", "6. Add ½ cup milk"],
+        "items": ["1. <b>Bowl 1</b> from last step","2. <b>Bowl 2</b> from last step","3. Add <b>3 eggs</b> to Bowl 2", "4. Add <b>2 tsp vanilla</b> to Bowl 2","5. Pour Bowl 1 into Bowl 2", "6. Add <b>½ cup milk</b>"],
         "text": "Note: Beat well between additions.",
         "image":"https://www.orange.nsw.gov.au/gallery/wp-content/uploads/2021/12/SUNDAY-STASH-APRIL-Pancake-Mix-process-1-100419-dL2vyi.tmp_.jpg",
         "next_lesson": "4",
         "prev_lesson": "2",
-        "extra_images": []
+        "extra_images": ["../static/step1-bowl.png", "../static/step2-bowl.png", "../static/eggs-bowl.png", "../static/vanilla-bowl.png", "../static/flour-bowl.png", "../static/milk-bowl.png"]
     },
     "4":{
         "lesson_id": "4",

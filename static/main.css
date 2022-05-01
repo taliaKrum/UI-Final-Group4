@@ -23,10 +23,15 @@ img{
     padding-bottom: 20px;
 }
 
-.learn-title{
+.lesson-image{
+    width: 300px;
+    height: 200px;
+}
+
+/* .learn-title{
     padding-top: 100px;
     padding-left: 70px;
-}
+} */
 
 .navbar-nav{
     padding-left: 25%;
@@ -45,9 +50,12 @@ img{
     height: auto;
 }
 .step2-text{
-    padding-left:7%;
-    padding-top: 5%;
-    padding-bottom: 80%;
+    padding-right: 100px;
+}
+
+.step2-text:hover{
+    background-color: gold;
+    cursor: pointer;
 }
 
 .step3-text{
@@ -88,4 +96,23 @@ img{
 .ing-img {
     height: 100px;
     width: 100px;
+}
+
+.bowl-imgs{
+    width: 120px;
+    height: 120px;
+}
+
+.bowls-img{
+    width: 90px;
+    height: 90px;
+}
+
+.ingredient{
+    z-index: 1;
+}
+
+#progress{
+    color:rgb(217, 185, 138);
+    margin-left: 20px;
 }
