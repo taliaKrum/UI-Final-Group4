@@ -42,4 +42,6 @@ $(document).ready(function() {
     $("#prev-button").click(function(){
         window.location.href = "/learn/"+lesson.prev_lesson+""
     })
+
+    $("#progress").append("("+lesson.lesson_id+"/7)")
 })

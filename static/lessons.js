@@ -14,10 +14,11 @@ function initShopping(items) {
 }
 
 function initPopup(items) {
-    $("#popup").empty();
+    $("#cart").empty();
     $.each(items, function(i, val) {
         let pic = $("<img class='ing-img' id='ingPic"+i+"' src="+val+">")
-        $("#popup").append(pic);
+        // $("#popup").append(pic);
+        $("#cart").append(pic);
     }) 
 }
 
@@ -26,8 +27,7 @@ export function ingredients(lesson){
     var row = $("<div class='row'></div>")
     var col1 = $("<div class='col-md-4' id='list'></div>")
     $.each(lesson.items, function(index,value){
-        var list = $("<div class='ingredient'>")
-        // list.html((index+1) + ": " + value)
+        var list = $("<div id='l"+index+"'class='ingredient'>")
         list.html(value)
         list.attr('data-name', value)
         list.draggable({
@@ -52,6 +52,7 @@ export function ingredients(lesson){
             let i = lesson.items.indexOf(ing);
             shoppingList.push(lesson.items[i]);
             popUpList.push(lesson.extra_images[i]);
+            $("#l"+i+"").remove();
             initShopping(shoppingList);
             initPopup(popUpList);
             console.log(shoppingList)
@@ -64,7 +65,7 @@ export function step1(lesson){
     var drop
      $.each(lesson.items, function(index,value){
         row = $("<div id="+index+" class='row'></div><br>")
-        var col1 = $("<div class='col-md-2'><img src='https://t3.ftcdn.net/jpg/04/26/13/92/360_F_426139222_xZ74I0LZQUcdKOsvvmdfrd0tE2JKl2JZ.jpg'></div>")
+        var col1 = $("<div class='col-md-2'><img class='bowls-img' src='https://t3.ftcdn.net/jpg/04/26/13/92/360_F_426139222_xZ74I0LZQUcdKOsvvmdfrd0tE2JKl2JZ.jpg'></div>")
         var col2 = $("<div class='col-md-4'></div>")
         drop = $("<div id='ingDrop"+index+"' class='col-md-5'></div>") 
         
@@ -106,11 +107,11 @@ export function step1(lesson){
                 $("#ingDrop1").append(measure)
             }
         })
-        col3.append(bowl)
+        $("#cart").append(bowl)
     })
 
-    var row3 = $("<div class='row'></div><br>")
-    var col = $("<div id='directions' class='col-md-8 note'></div>")
+    var row3 = $("<div class='row'></div>")
+    var col = $("<div id='directions' class='col-md-12 note'></div>")
     col.append(lesson.text)
     col.append(col3)
     row3.append(col)
@@ -119,17 +120,28 @@ export function step1(lesson){
 
 export function step2(lesson){
     var r = $("<div class='row'></div>")
-    var col1 = $("<div class='col-md-3'></div>")
-    var col2 = $("<div class='col-md-5'><img class='step2-img' src='https://natashaskitchen.com/wp-content/uploads/2020/05/Vanilla-Cupcakes-7-728x1092.jpg'></div>")
-    var col3 = $("<div class='col-md-3'></div>")
+    var col1 = $("<div class='col-md-4'></div>")
+    var col2 = $("<div class='col-md-4'></div>")
+    var col3 = $("<div class='col-md-4'></div>")
     
     $.each(lesson.items, function(index,value){
-       var row = $("<div class='row step2-text'></div>")
-       row.append(value)
-       
-       if(index % 2 == 0){
+       var row = $("<div class='row'><p class='step2-text'>"+value+"</p></div><br>")
+       var img = $("<div class='right'><img id='i"+index+"' class='bowl-imgs' src='"+lesson.extra_images[index]+"'</div>")
+    //    row.append(value);
+    
+        //when click text, append img
+        row.on("click", function () {
+            $("#i"+index+"").remove()
+            row.append(img);
+        })       
+
+       if(index ==0 || index==3){
            col1.append(row)
-       }else{
+       }
+       else if(index==1 || index == 4){
+           col2.append(row)
+       }
+       else{
            col3.append(row)
        }
    })
