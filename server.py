@@ -80,7 +80,7 @@ lessons = {
 quiz_questions = {
     "1":{
         "question_id": "1",
-        "title": "Step 1: Drag ingredients into the right bowl!",
+        "title": "Drag ingredients into the right bowl!",
         "Bowl1":["Flour", "Baking powder", "Salt"],
         "Bowl2": ["Butter", "Sugar"],
         "image":"https://www.wseetonline.com/rs/wp-content/uploads/2022/02/0764612a67bae5342d7f57abda5c78b0.jpg",
@@ -89,16 +89,16 @@ quiz_questions = {
     },
     "2":{
         "question_id": "2",
-        "title": "Step 2: What to do with butter?",
-        "items":["Butter can be directly used after taking out from refrigerator.", "Use microwave to melt butter to liquid.", "Beat the butter until thick and fluffy."],
+        "title": "What to NOT beat in making cupcake frosting?",
+        "items":["Beat the cold heavy cream.", "Beat cream cheese and powdered sugar.", "Beat whipped cream and cream cheese mix."],
         "text": "",
-        "image": "https://www.orange.nsw.gov.au/gallery/wp-content/uploads/2021/12/SUNDAY-STASH-APRIL-Pancake-Mix-process-1-100419-dL2vyi.tmp_.jpg",
+        "image": "https://www.thespruceeats.com/thmb/42NhT-_5EuXlkGyZ4cW82VwbwX4=/3042x2028/filters:no_upscale():max_bytes(150000):strip_icc()/vegan-cream-cheese-frosting-recipe-3378246-step-06-7dab8ba1580342ccbcb0032f76b6fe9f.jpg",
         "next_quiz": "3",
         "prev_quiz": "1"
     },
     "3":{
         "question_id": "3",
-        "title": "Step 3: Write correct ingredients for cupcakes",
+        "title": "Write correct ingredients for cupcakes",
         "items":["Mixed flours", "Milk", "Eggs", "Vanilla extract", "Pepper", "Cheese", "Rice", "Potatoes", "Basil", "Starch", "Onion"],
         "text": "",
         "image": "https://thumbs.dreamstime.com/b/freshly-baked-cupcakes-oven-freshly-baked-cupcakes-oven-103971786.jpg",

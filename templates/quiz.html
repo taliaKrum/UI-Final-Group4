@@ -13,20 +13,19 @@
 
 <body>
     <div class="container">
-        
-        <br>
-        <div class="spacing row">
-            <div class="col-md-7">
-                <img src="{{question.image}}">
-            </div>
-            
-            <div class="col-md-3 learn-title">
+        <div class="spacing">
+            <div class="row learn-title">
                 <h2><i>{{question.title}} </i></h2>
-
+                <h3 id="progress"></h3>
+            </div>
+            <div class="row">
+                <img class="lesson-image" src="{{question.image}}">
+                <div id="cart"></div>
             </div>
         </div>
         <br>
-        <div class="details" id="details">
+        <div class="details general_text" id="details">
+            
         </div>
         <br>
         <br>

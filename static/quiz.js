@@ -1,8 +1,9 @@
-import {quiz1, quiz2, quiz3, quizEnd} from '/static/quizzes.js';
+import {quiz1, quiz2, quiz3, quizEnd, quizReset} from '/static/quizzes.js';
 
 function load(question){
     console.log(question.question_id)
     if(question.question_id == "1"){
+        quizReset()
         quiz1(question)
         console.log(tracker)
     }
@@ -35,7 +36,14 @@ $(document).ready(function() {
     $("#prev-button").click(function(){
         if (question.question_id == 1)
         window.location.href = "/learn/2"
+        else if (question.question_id == 2)
+        window.location.href = "/learn/6"
+        else if (question.question_id == 3 || question.question_id == 4)
+        window.location.href = "/learn/1"
     })
+
+    $("#progress").append("("+question.question_id+"/4)")
+
 })
 
 
