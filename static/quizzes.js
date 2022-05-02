@@ -232,8 +232,52 @@ export function quiz3(question){
     });
 }
 
+export function quiz4(question){
+    var row = $("<div class='row'></div>")
+    var col1 = $("<div class='col-md-8' id='list1'></div>")
+    $.each(question.items, function(index,value){
+        var list1 = $("<div class='ui-widget-content' id= '" + (index + 1) + "' style='cursor: pointer; padding: 3px; background-color: transparent;'>")
+        list1.html((index+1) + ": " + value)
+        col1.append(list1)
+        col1.append("<br/>")
+    })
+    row.append(col1)
+    $("#details").append(row)
+
+    var col5 = $("<div class='col-md-12' style='margin-left: 300px'><div id='temp' class='temp'>Select the correct answer! You have 2 chances!</div></div>")
+    $("#details").append(col5)
+    var flag = 0
+
+    $('#' + 1 + '').click(function () {
+        $(this).css('background-color', 'red')
+        flag += 1
+    });
+    $('#' + 2 + '').click(function () {
+        $(this).css('background-color', 'red')
+        flag += 1
+    });
+    $('#' + 3 + '').click(function () {
+        $(this).css('background-color', 'green')
+        if (flag < 2){
+            $.ajax({
+                url: '/add_correct',
+                dataType : "json",
+                data : JSON.stringify(1),
+                type: 'POST',
+                contentType: "application/json; charset=utf-8",
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+        });
+}
+
 export function quizEnd(question){
-    var row = $("<h1>Your Quiz Score is " + tracker + " / 3 </div>")
+    var row = $("<h1>Your Quiz Score is " + tracker + " / 4 </div>")
     $("#details").append(row)
     $.ajax({
         url: '/reset_tracker',

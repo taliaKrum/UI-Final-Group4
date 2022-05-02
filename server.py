@@ -38,7 +38,7 @@ lessons = {
     "4":{
         "lesson_id": "4",
         "title": "Step 3 - Baking time! ",
-        "items": ["1. Pour butter into tins", "2. Filling ⅔ full", "3. 350˚F 20 mins", "4. Remove to rack to cool"],
+        "items": ["1. Pour butter into tins", "2. Filling ⅔ full", "3. 350˚F 20-23 mins", "4. Remove to rack to cool"],
         "text": "Note: Don't Overfill - Fill cupcake liners 2/3 full or they will overflow and cause a muffin top.",
         "image":"https://thumbs.dreamstime.com/b/freshly-baked-cupcakes-oven-freshly-baked-cupcakes-oven-103971786.jpg",
         "next_lesson": "5",
@@ -80,7 +80,7 @@ lessons = {
 quiz_questions = {
     "1":{
         "question_id": "1",
-        "title": "Step 1: Drag ingredients into the right bowl!",
+        "title": "Question 1: Drag ingredients into the right bowl!",
         "Bowl1":["Flour", "Baking powder", "Salt"],
         "Bowl2": ["Butter", "Sugar"],
         "image":"https://www.wseetonline.com/rs/wp-content/uploads/2022/02/0764612a67bae5342d7f57abda5c78b0.jpg",
@@ -89,7 +89,7 @@ quiz_questions = {
     },
     "2":{
         "question_id": "2",
-        "title": "Step 2: What to do with butter?",
+        "title": "Question 2: What to do with butter?",
         "items":["Butter can be directly used after taking out from refrigerator.", "Use microwave to melt butter to liquid.", "Beat the butter until thick and fluffy."],
         "text": "",
         "image": "https://www.orange.nsw.gov.au/gallery/wp-content/uploads/2021/12/SUNDAY-STASH-APRIL-Pancake-Mix-process-1-100419-dL2vyi.tmp_.jpg",
@@ -98,7 +98,7 @@ quiz_questions = {
     },
     "3":{
         "question_id": "3",
-        "title": "Step 3: Write correct ingredients for cupcakes",
+        "title": "Question 3: Write correct ingredients for cupcakes",
         "items":["Mixed flours", "Milk", "Eggs", "Vanilla extract", "Pepper", "Cheese", "Rice", "Potatoes", "Basil", "Starch", "Onion"],
         "text": "",
         "image": "https://thumbs.dreamstime.com/b/freshly-baked-cupcakes-oven-freshly-baked-cupcakes-oven-103971786.jpg",
@@ -107,19 +107,19 @@ quiz_questions = {
     },
     "4":{
         "question_id": "4",
-        "title": "End of Quiz",
-        "items":[],
+        "title": "Question 4: What's the required temperature and baking time for cupcake?",
+        "items":["400˚F, 15-20 minutes","375˚F, 10-15 minutes", "350˚F, 20-23 minutes"],
         "text": "",
         "image": "https://thumbs.dreamstime.com/b/freshly-baked-cupcakes-oven-freshly-baked-cupcakes-oven-103971786.jpg",
-        "next_quiz": "4",
-        "prev_quiz": "2"
+        "next_quiz": "5",
+        "prev_quiz": "3"
     },
     "5":{
         "question_id": "5",
-        "title": "First question",
+        "title": "End of Quiz",
         "items":[],
         "text": "",
-        "image": "",
+        "image": "https://hips.hearstapps.com/del.h-cdn.co/assets/18/07/1518475314-vanilla-cupcake-horizontal-.jpg",
         "next_quiz": "6",
         "prev_quiz": "3"
     },

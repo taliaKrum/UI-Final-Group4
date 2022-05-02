@@ -16,8 +16,13 @@
                 <h2><i>{{lesson.title}} </i></h2>
                 <h3 id="progress"></h3>
             </div>
+            <br>
+            <div id="myProgress">
+                <div id="myBar"></div>
+            </div>
+            <br><br>
             <div class="row">
-                <img class="lesson-image" src="{{lesson.image}}">
+                <img class="lesson-image" id = "lesson-image" src="{{lesson.image}}">
                 <div id="cart"></div>
             </div>
         </div>
@@ -26,14 +31,15 @@
             
         </div>
         <br>
-        <br>
         <div class="row">
             <div class="col-md-2">
                 <button id="prev-button" class="btn btn-warning">Prev</button>
             </div>
-            <div class="col-md-8"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-2" id="enter-quiz"></div>
+            <div class="col-md-3"></div>
             <div class="col-md-2">
-                <button id="next-button" class="btn btn-warning">Next</button>
+                <button id="next-button" class="btn btn-warning next-button">Next</button>
             </div>
         </div>
         <br>
