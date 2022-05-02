@@ -26,6 +26,7 @@ function initPopup(items) {
 export function ingredients(lesson){
     var row = $("<div class='row'></div>")
     var col1 = $("<div class='col-md-4' id='list'></div>")
+    col1.append($("<br><div id='shopping-title'><mark>Shopping List :</mark></div><br>"))
     $.each(lesson.items, function(index,value){
         var list = $("<div id='l"+index+"'class='ingredient'>")
         list.html(value)
@@ -38,13 +39,14 @@ export function ingredients(lesson){
         col1.append(list)
     })
     row.append(col1)
-
-    var col2 = $("<div class='col-md-4' class='shop'><div id='shopping' class='shopping'>Shopping Cart</div><div id='shlist'></div></div>")
+    row.append($("<div class='col-md-1 arrow' style='padding-top:250px'><img src='https://thumbs.dreamstime.com/b/yellow-right-arrow-icon-yellow-right-arrow-icon-flat-style-isolated-white-background-125890820.jpg'></div>"))
+    row.append($("<div class='col-md-1'></div>"))
+    var col2 = $("<div class='col-md-4' class='shop'><div id='shopping' class='shopping'><br><i>Drag ingredients to your cart!</i><br><br><img src='https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/256x256/shopping_cart.png'></img></div><div id='shlist'></div></div>")
     row.append(col2)
     $("#details").append(row)
 
-    var col3 = $("<div id='popup' class='col-md-4'></div>")
-    row.append(col3)
+    //var col3 = $("<div id='popup' class='col-md-4'></div>")
+    //row.append(col3)
 
     $("#shopping").droppable({
         drop: function(event, ui) {
@@ -57,6 +59,12 @@ export function ingredients(lesson){
             initPopup(popUpList);
             console.log(shoppingList)
         }
+    })
+
+    var quiz_row = $("<button id='quiz-button' class='btn btn-warning next-button'>Go to Quiz</button>")
+    $("#enter-quiz").append(quiz_row)
+    $("#quiz-button").click(function(){
+        window.location.href = "/quiz/3"
     })
 }
 
@@ -109,23 +117,33 @@ export function step1(lesson){
         })
         $("#cart").append(bowl)
     })
-
+    $("#cart").append($("<br><br><br><div class='row'><mark><i>Click on ingredients to see details!</i><i class='far fa-hand-point-up'></i></mark></div>"))
+    
     var row3 = $("<div class='row'></div>")
     var col = $("<div id='directions' class='col-md-12 note'></div>")
     col.append(lesson.text)
     col.append(col3)
     row3.append(col)
     $("#details").append(row3)
+
+    var quiz_row = $("<button id='quiz-button' class='btn btn-warning next-button'>Go to Quiz</button>")
+    $("#enter-quiz").append(quiz_row)
+    $("#quiz-button").click(function(){
+        window.location.href = "/quiz/1"
+    })
 }
 
 export function step2(lesson){
+    var r1 = $("<div class='row'><mark><i>Click on each step to see details!</i></mark> </div><br><br>")
+    $("#details").append(r1)
+
     var r = $("<div class='row'></div>")
     var col1 = $("<div class='col-md-4'></div>")
     var col2 = $("<div class='col-md-4'></div>")
     var col3 = $("<div class='col-md-4'></div>")
     
     $.each(lesson.items, function(index,value){
-       var row = $("<div class='row'><p class='step2-text'>"+value+"</p></div><br>")
+       var row = $("<div class='row'><p class='step2-text'>"+value+"</p></div><br><br>")
        var img = $("<div class='right'><img id='i"+index+"' class='bowl-imgs' src='"+lesson.extra_images[index]+"'</div>")
     //    row.append(value);
     
@@ -150,12 +168,18 @@ export function step2(lesson){
    //r.append($("<div class='col-md-1'></div>"))
    r.append(col3)
    $("#details").append(r)
+
+   var quiz_row = $("<button id='quiz-button' class='btn btn-warning next-button'>Go to Quiz</button>")
+    $("#enter-quiz").append(quiz_row)
+    $("#quiz-button").click(function(){
+        window.location.href = "/quiz/2"
+    })
 }
 
 export function step3(lesson){
     var r = $("<div class='row'></div>")
     var col1 = $("<div class='col-md-3'></div>")
-    var col2 = $("<div class='col-md-5'><img src='https://natashaskitchen.com/wp-content/uploads/2020/05/Vanilla-Cupcakes-8-728x546.jpg'></div>")
+    var col2 = $("<div class='col-md-6'><img src='https://natashaskitchen.com/wp-content/uploads/2020/05/Vanilla-Cupcakes-8-728x546.jpg'></div>")
     var col3 = $("<div class='col-md-3'></div>")
     
     $.each(lesson.items, function(index,value){
@@ -173,6 +197,12 @@ export function step3(lesson){
    //r.append($("<div class='col-md-1'></div>"))
    r.append(col3)
    $("#details").append(r)
+
+   var quiz_row = $("<button id='quiz-button' class='btn btn-warning next-button'>Go to Quiz</button>")
+    $("#enter-quiz").append(quiz_row)
+    $("#quiz-button").click(function(){
+        window.location.href = "/quiz/4"
+    })
 }
 export function frost_ing(lesson){
     
@@ -180,6 +210,7 @@ export function frost_ing(lesson){
     var col1 = $("<div class='col-md-3'><img src='https://www.recipetineats.com/wp-content/uploads/2020/09/Perfect-vanilla-cupcake.jpg'></div>")
     var col2 = $("<div class='col-md-1 arrow'><img src='https://thumbs.dreamstime.com/b/yellow-right-arrow-icon-yellow-right-arrow-icon-flat-style-isolated-white-background-125890820.jpg'></div>")
     var col3 = $("<div class='col-md-3'><img src='https://www.noracooks.com/wp-content/uploads/2022/03/sq-3.jpg'></div>")
+    row.append($("<div class='col-md-1'></div>"))
     row.append(col1)
     row.append($("<div class='col-md-1'></div>"))
     row.append(col2)
@@ -189,6 +220,7 @@ export function frost_ing(lesson){
     var row2 = $("<div class='row'></div><br><br>")
     var col4 = $("<div class='col-md-5 subtitle'></div><br>")
     col4.append(lesson.text)
+    row2.append($("<div class='col-md-1'></div>"))
     row2.append(col4)
     $("#details").append(row)
     $("#details").append(row2)
@@ -204,11 +236,13 @@ export function frost_ing(lesson){
         var col2 = $("<div class='col-md-4'></div>")
     
         col2.append(value)
+        row.append($("<div class='col-md-1'></div>"))
         row.append(col1)
         row.append($("<div class='col-md-1'></div>"))
         row.append(col2)
         $("#details").append(row)
    })
+
 }
 
 export function frost_step1(lesson){
@@ -230,9 +264,16 @@ export function frost_step1(lesson){
         var col3 = $("<div class='col-md-2'><img src='" + beat_imgs[index]+ "'></div>")
         
         col2.append(value)
+        row.append($("<div class='col-md-2'></div>"))
         row.append(col1)
         row.append(col2)
         row.append(col3)
         $("#details").append(row)
+        
+   })
+   var quiz_row = $("<button id='quiz-button' class='btn btn-warning next-button'>Go to Quiz</button>")
+   $("#enter-quiz").append(quiz_row)
+   $("#quiz-button").click(function(){
+       window.location.href = "/quiz/2"
    })
 }

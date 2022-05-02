@@ -38,6 +38,14 @@ img{
 }
 
 .shopping{
+    /*background-color: rgb(228, 184, 63);*/
+    padding-bottom: 40px;
+    padding-top: 40px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.bowl_quiz{
     background-color: rgb(228, 184, 63);
     padding-bottom: 40px;
     padding-top: 40px;
@@ -115,4 +123,42 @@ img{
 #progress{
     color:rgb(217, 185, 138);
     margin-left: 20px;
+}
+
+#myProgress {
+    width: 100%;
+    background-color: white;
+  }
+  
+#myBar {
+    width: 1%;
+    height: 20px;
+    background-color: rgb(217, 185, 138);
+}
+.next-button {
+    position: absolute;
+    right:0;
+}
+
+mark {
+    background-color:rgb(217, 185, 138);
+    color: black;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#list{
+    font-size: 23px;
+}
+#shopping-title{
+    font-size: 30px;
+}
+
+.quiz-enter{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: gold;
+    /*color:rgb(102, 63, 5);*/
 }

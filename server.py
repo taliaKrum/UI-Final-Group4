@@ -38,7 +38,7 @@ lessons = {
     "4":{
         "lesson_id": "4",
         "title": "Step 3 - Baking time! ",
-        "items": ["1. Pour butter into tins", "2. Filling ⅔ full", "3. 350˚F 20 mins", "4. Remove to rack to cool"],
+        "items": ["1. Pour butter into tins", "2. Filling ⅔ full", "3. 350˚F 20-23 mins", "4. Remove to rack to cool"],
         "text": "Note: Don't Overfill - Fill cupcake liners 2/3 full or they will overflow and cause a muffin top.",
         "image":"https://thumbs.dreamstime.com/b/freshly-baked-cupcakes-oven-freshly-baked-cupcakes-oven-103971786.jpg",
         "next_lesson": "5",
@@ -101,25 +101,25 @@ quiz_questions = {
         "title": "Write correct ingredients for cupcakes",
         "items":["Mixed flours", "Milk", "Eggs", "Vanilla extract", "Pepper", "Cheese", "Rice", "Potatoes", "Basil", "Starch", "Onion"],
         "text": "",
-        "image": "https://thumbs.dreamstime.com/b/freshly-baked-cupcakes-oven-freshly-baked-cupcakes-oven-103971786.jpg",
+        "image": "https://natashaskitchen.com/wp-content/uploads/2020/05/Vanilla-Cupcakes-728x485.jpg",
         "next_quiz": "4",
         "prev_quiz": "2"
     },
     "4":{
         "question_id": "4",
-        "title": "End of Quiz",
-        "items":[],
+        "title": "Question 4: What's the required temperature and baking time for cupcake?",
+        "items":["400˚F, 15-20 minutes","375˚F, 10-15 minutes", "350˚F, 20-23 minutes"],
         "text": "",
         "image": "https://thumbs.dreamstime.com/b/freshly-baked-cupcakes-oven-freshly-baked-cupcakes-oven-103971786.jpg",
-        "next_quiz": "4",
-        "prev_quiz": "2"
+        "next_quiz": "5",
+        "prev_quiz": "3"
     },
     "5":{
         "question_id": "5",
-        "title": "First question",
+        "title": "End of Quiz",
         "items":[],
         "text": "",
-        "image": "",
+        "image": "https://hips.hearstapps.com/del.h-cdn.co/assets/18/07/1518475314-vanilla-cupcake-horizontal-.jpg",
         "next_quiz": "6",
         "prev_quiz": "3"
     },

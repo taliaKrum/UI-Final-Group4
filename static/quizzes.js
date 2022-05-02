@@ -44,10 +44,10 @@ export function quiz1(question){
     col1.append(shuffle(lists))
     row.append(col1)
 
-    var col3 = $("<div class='col-md-4'><div id='bowl1' class='shopping' style='z-index: 1;'>Bowl 1</div></div>")
+    var col3 = $("<div class='col-md-4'><div id='bowl1' class='bowl_quiz' style='z-index: 1;'>Bowl 1</div></div>")
     row.append(col3)
 
-    var col4 = $("<div class='col-md-4'><div id='bowl2' class='shopping' style='z-index: 1;'>Bowl 2</div></div>")
+    var col4 = $("<div class='col-md-4'><div id='bowl2' class='bowl_quiz' style='z-index: 1;'>Bowl 2</div></div>")
     row.append(col4)
 
     $("#details").append(row)
@@ -276,8 +276,9 @@ export function quiz3(question){
     });
 }
 
+
 export function quizEnd(question){
-    var row = $("<h1>Your Quiz Score is " + tracker + " / 3 </div>")
+    var row = $("<h1>Your Quiz Score is " + tracker + " / 4 </div>")
     $("#details").append(row)
     quizReset()
 }
