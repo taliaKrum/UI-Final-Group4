@@ -39,10 +39,11 @@ export function ingredients(lesson){
         col1.append(list)
     })
     row.append(col1)
-    row.append($("<div class='col-md-1 arrow' style='padding-top:250px'><img src='https://thumbs.dreamstime.com/b/yellow-right-arrow-icon-yellow-right-arrow-icon-flat-style-isolated-white-background-125890820.jpg'></div>"))
-    row.append($("<div class='col-md-1'></div>"))
-    var col2 = $("<div class='col-md-4' class='shop'><div id='shopping' class='shopping'><br><i>Drag ingredients to your cart!</i><br><br><img src='https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/256x256/shopping_cart.png'></img></div><div id='shlist'></div></div>")
+    row.append($("<div class='col-md-1 arrow' style='padding-top:250px'><img src='../static/yellow-arrow.png'></div>"))
+    var col2 = $("<div class='col-md-4' class='shop'><div id='shopping' class='shopping'><br><i>Drag ingredients to your cart!</i><br><br><img src='../static/shopping_cart.png'></img></div>")
+    var col3 = $("<div class='col-md-3'><div id='shlist'></div></div></div>")
     row.append(col2)
+    row.append(col3)
     $("#details").append(row)
 
     //var col3 = $("<div id='popup' class='col-md-4'></div>")
@@ -86,7 +87,7 @@ export function step1(lesson){
 
     var col3 = $("<div class='col-md-12'></div>")
     $.each(lesson.extra_images, function(i, val){
-        let bowl = $("<img id='click"+i+"' class='clickme ingredient ing-img' src="+val+">")
+        let bowl = $("<img id='click"+i+"' class='clickme ing-img' src="+val+">")
         let measure 
         bowl.on("click", function () {
             if(bowl.prop('id')=='click0'){
@@ -208,7 +209,7 @@ export function frost_ing(lesson){
     
     var row = $("<div class='row'></div><br>")
     var col1 = $("<div class='col-md-3'><img src='https://www.recipetineats.com/wp-content/uploads/2020/09/Perfect-vanilla-cupcake.jpg'></div>")
-    var col2 = $("<div class='col-md-1 arrow'><img src='https://thumbs.dreamstime.com/b/yellow-right-arrow-icon-yellow-right-arrow-icon-flat-style-isolated-white-background-125890820.jpg'></div>")
+    var col2 = $("<div class='col-md-1 arrow'><img src='../static/yellow-arrow.png'></div>")
     var col3 = $("<div class='col-md-3'><img src='https://www.noracooks.com/wp-content/uploads/2022/03/sq-3.jpg'></div>")
     row.append($("<div class='col-md-1'></div>"))
     row.append(col1)
@@ -226,8 +227,8 @@ export function frost_ing(lesson){
     $("#details").append(row2)
 
     var ig_imgs = [
-        'https://i5.walmartimages.com/asr/b7b17d39-ef58-4f26-94b3-1aa1752abaf3_3.e2d12a9eeeacb871a4b872d2c3107755.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF',
-        'https://www.meijer.com/content/dam/meijer/product/0002/10/0061/22/0002100061223_2_A1C1_0600.png',
+        '../static/whipCream.png',
+        '../static/creamCheese.png',
         'https://blogs.oncolink.org/wp-content/uploads/sugar.2-810x476-1.jpg'
     ]
     $.each(lesson.items, function(index,value){

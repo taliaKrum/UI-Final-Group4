@@ -40,7 +40,6 @@ img{
 .shopping{
     /*background-color: rgb(228, 184, 63);*/
     padding-bottom: 40px;
-    padding-top: 40px;
     text-align: center;
     font-weight: bold;
 }
@@ -95,6 +94,11 @@ img{
 .ingredient:hover{
     background-color: gold;
     cursor: move;
+}
+
+.clickme:hover{
+    background-color: gold;
+    cursor: pointer; 
 }
 
 .ingredient {
@@ -153,6 +157,10 @@ mark {
 }
 #shopping-title{
     font-size: 30px;
+}
+
+#shlist{
+   padding-top: 100px; 
 }
 
 .quiz-enter{
