@@ -22,7 +22,7 @@ export function quiz1(question){
     var col1 = $("<div class='col-md-3'></div>")
     var lists = []
     $.each(question.Bowl1, function(index,value){
-        var list1 = $("<div class='ui-widget-content' style=' cursor: pointer; z-index: 100; background-color: transparent;'>")
+        var list1 = $("<div class='ui-widget-content' style=' cursor: move; z-index: 100; background-color: transparent;'>")
         list1.html(value)
         list1.attr('id', "list1")
         list1.draggable({
@@ -32,7 +32,7 @@ export function quiz1(question){
     })
 
     $.each(question.Bowl2, function(index,value){
-        var list2 = $("<div class='ui-widget-content' style=' cursor: pointer; z-index: 100; background-color: transparent;'>")
+        var list2 = $("<div class='ui-widget-content' style=' cursor: move; z-index: 100; background-color: transparent;'>")
         list2.html(value)
         list2.attr('id', "list2")
         list2.draggable({
@@ -51,8 +51,8 @@ export function quiz1(question){
     row.append(col4)
 
     $("#details").append(row)
-    var col5 = $("<div class='col-md-12' style='margin-left: 300px; font-size: 20px;'><div id='temp' class='temp'>Drag to the correct bowl! You have 2 chances!</div></div>")
-    $("#details").append(col5)
+    var col5 = $("<div class='col-md-12' style='margin-left: 120px; margin-top: 100px; font-size: 20px;'><div id='temp' class='temp'>Drag to the correct bowl! You have 2 chances!</div></div>")
+    $("#hints").append(col5)
     
     var count = 0
     var chances = 2
@@ -70,11 +70,13 @@ export function quiz1(question){
                 $(temp).text("Drag to the correct bowl! You have " + chances + " chance left!")
             } else if (chances == 1){
                 chances --
-                $(temp).text("You are out of chances :( To learn more, go to learning phase!")
+                $(temp).text("You are out of chances :( Click Next!")
+                $('#next-button').prop('disabled', false);
             }
         }
         
         if(count == 5){
+            $('#next-button').prop('disabled', false);
             check_droppable()
         }
       }
@@ -87,16 +89,18 @@ export function quiz1(question){
                 ui.draggable.css("background-color", "green")
             else {
                 ui.draggable.css("background-color", "red") 
-                if(chances > 0){
+                if(chances == 2){
                     chances --
                     $(temp).text("Drag to the correct bowl! You have " + chances + " chance left!")
                 } else if (chances == 1){
                     chances --
-                    $(temp).text("You are out of chances :( To learn more, go to learning phase!")
+                    $(temp).text("You are out of chances :( Click Next!")
+                    $('#next-button').prop('disabled', false);
                 }
             }
             
             if(count == 5){
+                $('#next-button').prop('disabled', false);
                 check_droppable()
             }
         }
@@ -107,7 +111,6 @@ export function quiz1(question){
     // checking if less than 2 wrong answers 
     function check_droppable(){
         var wrongs = 0
-        var chances = 2
         var els = document.getElementsByClassName("ui-widget-content");
         for(var i = 0; i < els.length; i++)
         {
@@ -118,7 +121,7 @@ export function quiz1(question){
         }
 
         if (wrongs < 2) {
-            $(temp).text("Good job! One point for you!")
+            $(temp).text("Good job One point for you! Click Next!")
                         $.ajax({
                         url: '/add_correct',
                         dataType : "json",
@@ -154,9 +157,9 @@ export function quiz2(question){
     $("#details").append(row)
     var chances = 2
 
-    var col5 = $("<div class='col-md-12' style='margin-left: 300px; font-size: 20px;'><div id='temp' class='temp'>Select the correct answer! You have 2 chances!</div></div>")
+    var col5 = $("<div class='col-md-12' style='margin-left: 120px; margin-top: 100px; font-size: 20px;'><div id='temp' class='temp'>Select the correct answer! You have 2 chances!</div></div>")
     $("#details").append("<br/>")
-    $("#details").append(col5)
+    $("#hints").append(col5)
 
     var flag = 0
     var once = 0
@@ -169,7 +172,8 @@ export function quiz2(question){
             $(temp).text("Select the correct answer! You have " + chances + " chances left!")
         } else if (chances == 1 && once == 0){
             chances --
-            $(temp).text("You are out of chances :( To learn more, go to learning phase!")
+            $(temp).text("You are out of chances :( Click Next!")
+            $('#next-button').prop('disabled', false);
         }
     });
     $('#' + 2 + '').click(function () {
@@ -180,14 +184,16 @@ export function quiz2(question){
             $(temp).text("Select the correct answer! You have " + chances + " chances left!")
         } else if (chances == 1 && once == 0){
             chances --
-            $(temp).text("You are out of chances :( To learn more, go to learning phase!")
+            $(temp).text("You are out of chances :( Click Next!")
+            $('#next-button').prop('disabled', false);
         }
     });
     $('#' + 3 + '').click(function () {
         $(this).css('background-color', 'green')
         if (flag < 2 && once == 0){
             once ++
-            $(temp).text("Correct! One point for you!")
+            $('#next-button').prop('disabled', false);
+            $(temp).text("Correct One point for you! Click Next!")
             $.ajax({
                 url: '/add_correct',
                 dataType : "json",
@@ -229,9 +235,9 @@ export function quiz3(question){
     $("#details").append("<br>")
 
 
-      var col5 = $("<div class='col-md-12' style='margin-left: 200px'><div id='temp' class='temp'>Write the correct ingridients for cupcakes below with comma between words! (choose 4)</div></div>")
+      var col5 = $("<div class='col-md-12' style='margin-top: 100px; margin-left: 20px; font-size: 18px;'><div id='temp' class='temp'>Write the correct ingridients for cupcakes below with comma between words! (choose 4)</div></div>")
       var col6 = $("<input class='col-md-12'id='bowl1_input'/>")
-      $("#details").append(col5)
+      $("#hints").append(col5)
       $("#details").append(col6)
 
       var sent = 0
