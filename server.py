@@ -1,7 +1,7 @@
 from flask import Flask
 from flask import render_template
 from flask import Response, request, jsonify
-from itsdangerous import json
+import json
 app = Flask(__name__)
 
 lessons = {
@@ -124,9 +124,28 @@ quiz_questions = {
         "prev_quiz": "3"
     },
 }
+counting_tracker = [
+    {  "quiz": 1,
+       "url": '/learn/2',
+       "name": "Mixing of ingredients"
+    },
+    {  "quiz": 2,
+       "url": '/learn/6',
+       "name": "Correct ingredients for cupcakes"
 
-#user quiz answer tracker 
-tracker = 0
+    },
+    {  "quiz": 3,
+       "url": '/learn/1',
+       "name": "Correct ingredients for cupcakes"
+
+    },
+    {  "quiz": 4,
+       "url": '/learn/4',
+       "name": "Required temperature and baking time for cupcake"
+    }
+]
+
+
 
 @app.route('/')
 def home():
@@ -142,21 +161,46 @@ def learn(lesson_id):
 @app.route('/quiz/<quiz_id>')
 def quiz(quiz_id):
     question = quiz_questions[quiz_id]
-    return render_template('quiz.html', question = question, tracker=tracker)
+    return render_template('quiz.html', question = question, counting_tracker=counting_tracker)
 
 @app.route('/add_correct', methods=['GET', 'POST'])
 
 def add_correct():
-    global tracker 
-    tracker += 1
-    return tracker
+    json_data = request.get_json()
+    quiz = json_data["quiz"]
+    for i in range(len(counting_tracker)):
+        if counting_tracker[i]["quiz"] == quiz:
+            counting_tracker.pop(i)
+            break
+    return {"data": (4 - len(counting_tracker))}
 
 @app.route('/reset_tracker', methods=['GET', 'POST'])
 
 def reset_tracker():
-    global tracker 
-    tracker = 0
-    return tracker
+    counting_tracker.clear()
+    counting_tracker.append(
+    {  "quiz": 1,
+       "url": '/learn/2',
+       "name": "Mixing of ingredients"
+    })
+    counting_tracker.append(
+    {  "quiz": 2,
+       "url": '/learn/6',
+       "name": "Correct ingredients for cupcakes"
+    })
+    counting_tracker.append(
+   {  "quiz": 3,
+       "url": '/learn/1',
+       "name": "Correct ingredients for cupcakes"
+    })
+    counting_tracker.append(
+      {  "quiz": 4,
+       "url": '/learn/4',
+       "name": "Required temperature and baking time for cupcake"
+    }
+  )
+  
+    return {"data": (4 - len(counting_tracker))}
 
 if __name__ == '__main__':
    app.run(debug = True)
