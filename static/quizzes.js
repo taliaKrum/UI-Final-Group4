@@ -125,7 +125,10 @@ export function quiz1(question){
                         $.ajax({
                         url: '/add_correct',
                         dataType : "json",
-                        data : JSON.stringify(1),
+                        data : JSON.stringify({
+                            "quiz": 1,
+                            "url": "/learn/2"
+                        }),
                         type: 'POST',
                         contentType: "application/json; charset=utf-8",
                         success: function(response) {
@@ -197,7 +200,10 @@ export function quiz2(question){
             $.ajax({
                 url: '/add_correct',
                 dataType : "json",
-                data : JSON.stringify(1),
+                data : JSON.stringify({
+                    "quiz": 2,
+                    "url": "/learn/6"
+                }),
                 type: 'POST',
                 contentType: "application/json; charset=utf-8",
                 success: function(response) {
@@ -235,12 +241,18 @@ export function quiz3(question){
     $("#details").append("<br>")
 
 
-      var col5 = $("<div class='col-md-12' style='margin-top: 100px; margin-left: 20px; font-size: 18px;'><div id='temp' class='temp'>Write the correct ingridients for cupcakes below with comma between words! (choose 4)</div></div>")
+      var col5 = $("<div class='col-md-12' style='margin-top: 100px; margin-left: 20px; font-size: 18px;'><div id='temp' class='temp'>Write the correct ingridients for cupcakes below with comma between words! (choose only 4)</div></div>")
       var col6 = $("<input class='col-md-12'id='bowl1_input'/>")
+      var col7 = $("<div class='col-md-12' style='margin-left: 340px; font-size: 18px;'><div id='temp1' class='temp1'>Press enter to submit the answer! You have 2 chances!</div></div>")
+
       $("#hints").append(col5)
       $("#details").append(col6)
+      $("#details").append(col7)
 
       var sent = 0
+      var chances = 2
+      var once = 0
+      var flag = 0
     
       $(':input').on('propertychange input', function (e) {
         var valueChanged = false;
@@ -252,52 +264,172 @@ export function quiz3(question){
         }
         if (valueChanged) {
             var str = $(this).val().toLowerCase();
+            var sep_list = str.split(',')
             var counter = (str.match(/\,/g) || []).length;
-            console.log(counter)
+            if (counter == 3 && sep_list[sep_list.length - 1].length != 0){
+                $(this).css('background-color', 'green')
+                flag = 1
+            } else {
+                $(this).css('background-color', 'red')
+                flag = -1
+            }
+        }
+    });
+    
+    $("#bowl1_input").on("keydown", function(event) {
+        if(event.which == 13){ 
+        if(flag == 1){
+            console.log("pressed")
+            once ++;
+            chances --;
+            var str = $(this).val().toLowerCase();
+            var counter = (str.match(/\,/g) || []).length;
             if(~str.indexOf("flours") & ~str.indexOf("milk") & ~str.indexOf("eggs") & ~str.indexOf("vanilla") && counter==3){
+                $('#next-button').prop('disabled', false);
                 sent ++
                 $(temp).text("Excellent work! One point for you!")
-                $(this).css('background-color', 'green')
                 if(sent==1){
-                $.ajax({
-                    url: '/add_correct',
-                    dataType : "json",
-                    data : JSON.stringify(1),
-                    type: 'POST',
-                    contentType: "application/json; charset=utf-8",
-                    success: function(response) {
-                        console.log(response);
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    }
-                });
+                    $.ajax({
+                        url: '/add_correct',
+                        dataType : "json",
+                        data : JSON.stringify({
+                            "quiz": 3,
+                            "url": "/learn/1"
+                        }),
+                        type: 'POST',
+                        contentType: "application/json; charset=utf-8",
+                        success: function(response) {
+                            console.log(response);
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    });
             }
+            } else {
+                if(chances == 1){
+                    $(temp1).text("Press enter to submit the answer! You have " + chances + " chances left!")
+                } else if(chances <= 0){
+                    $(temp1).text("You are out of chances :( Click Next!")
+                    $('#next-button').prop('disabled', false);
+                }
             }
-            else {
-                $(this).css('background-color', 'red')
-            }
-            
         }
+    }
     });
 }
 
+export function quiz4(question){
+    var row = $("<div class='row'></div>")
+    var col1 = $("<div class='col-md-8' id='list1'></div>")
+    var list = []
+    $.each(question.items, function(index,value){
+        var list1 = $("<div class='ui-widget-content' id= '" + (index + 1) + "' style='cursor: pointer; padding: 3px; background-color: transparent;'><br/>")
+        list1.html(value)
+        list.push(list1) 
 
-export function quizEnd(question){
-    var row = $("<h1>Your Quiz Score is " + tracker + " / 4 </div>")
+    })
+
+    col1.append(shuffle(list)) 
+    console.log(col1)
+    row.append(col1)
     $("#details").append(row)
-    quizReset()
+    var chances = 2
+
+    var col5 = $("<div class='col-md-12' style='margin-left: 120px; margin-top: 100px; font-size: 20px;'><div id='temp' class='temp'>Select the correct answer! You have 2 chances!</div></div>")
+    $("#details").append("<br/>")
+    $("#hints").append(col5)
+
+    var flag = 0
+    var once = 0
+
+    $('#' + 1 + '').click(function () {
+        $(this).css('background-color', 'red')
+        flag += 1
+        if(chances > 1 && once == 0){
+            chances --
+            $(temp).text("Select the correct answer! You have " + chances + " chances left!")
+        } else if (chances == 1 && once == 0){
+            chances --
+            $(temp).text("You are out of chances :( Click Next!")
+            $('#next-button').prop('disabled', false);
+        }
+    });
+    $('#' + 2 + '').click(function () {
+        $(this).css('background-color', 'red')
+        flag += 1
+        if(chances > 1 && once == 0){
+            chances --
+            $(temp).text("Select the correct answer! You have " + chances + " chances left!")
+        } else if (chances == 1 && once == 0){
+            chances --
+            $(temp).text("You are out of chances :( Click Next!")
+            $('#next-button').prop('disabled', false);
+        }
+    });
+    $('#' + 3 + '').click(function () {
+        $(this).css('background-color', 'green')
+        if (flag < 2 && once == 0){
+            once ++
+            $('#next-button').prop('disabled', false);
+            $(temp).text("Correct One point for you! Click Next!")
+            $.ajax({
+                url: '/add_correct',
+                dataType : "json",
+                data : JSON.stringify({
+                    "quiz": 4,
+                    "url": "/learn/4"
+                }),
+                type: 'POST',
+                contentType: "application/json; charset=utf-8",
+                success: function(response) {
+                    console.log(response.data);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+        });
+}
+
+
+export function quizEnd(counting_tracker){
+    var list = []
+    var nice = 0
+    var row = $("<h2>Your Quiz Score is " + (4 - counting_tracker.length) + " / 4 </div>")
+    list.push("</br>")
+    for (var ele of counting_tracker){
+        nice++
+        var link = "window.location.href=" +"\"" + (ele["url"]) + "\""
+        console.log(link)
+        var list1 = $("<button id= '"+ ele["quiz"] +"' onclick= 'window.location.href=" + link +"'; style='padding: 3px; width:700px; margin-left: 200px; margin-top:10px; cursor: pointer; background-color: #ffc107; border-color: #ffc107;'>" + ele["name"] +"</button></br>")
+        list.push(list1) 
+    }
+    if (nice!=0){
+        var col5 = $("<div class='col-md-12' style='margin-left: 20px; margin-top: 100px; font-size: 20px;'><div id='temp' class='temp'>Click the buttons below to relearn about the questions that you got wrong!</div></div>")
+    } else {
+        var col5 = $("<div class='col-md-12' style='margin-left: 20px; margin-top: 100px; font-size: 20px;'><div id='temp' class='temp'>You got every quiz correct! Well Done!</div></div>")    
+    }
+    $("#cart").append(col5)
+    $("#cart").append("<br/>")
+    $("#details").append(row)
+    $("#hints").append(list)
+    
+
 }
 
 export function quizReset(){
     $.ajax({
         url: '/reset_tracker',
         dataType : "json",
-        data : JSON.stringify(1),
-        type: 'GET',
+        data : {
+            data: "reset"
+        },
+        type: 'POST',
         contentType: "application/json; charset=utf-8",
         success: function(response) {
-            console.log(response);
+            console.log(response.data);
         },
         error: function(error) {
             console.log(error);
